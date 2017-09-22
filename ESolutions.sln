@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions", "ESolutions\ESolutions.csproj", "{679DE7A0-6834-41A4-AEFE-0A317F5BF614}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions.Test", "ESolutions.Test\ESolutions.Test.csproj", "{CEA8FB8D-FE5A-48BD-A2C9-9D4FA4FFD33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions.Test.Helper", "ESolutions.Test.Helper\ESolutions.Test.Helper.csproj", "{5656A644-8F7B-478D-A7FB-5784D8BA8235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions.Test.Helper.Contracts", "ESolutions.Test.Helper.Contracts\ESolutions.Test.Helper.Contracts.csproj", "{BA35586F-0605-4430-8CC5-864BF656FE47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{679DE7A0-6834-41A4-AEFE-0A317F5BF614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{679DE7A0-6834-41A4-AEFE-0A317F5BF614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{679DE7A0-6834-41A4-AEFE-0A317F5BF614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{679DE7A0-6834-41A4-AEFE-0A317F5BF614}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA8FB8D-FE5A-48BD-A2C9-9D4FA4FFD33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA8FB8D-FE5A-48BD-A2C9-9D4FA4FFD33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA8FB8D-FE5A-48BD-A2C9-9D4FA4FFD33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA8FB8D-FE5A-48BD-A2C9-9D4FA4FFD33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5656A644-8F7B-478D-A7FB-5784D8BA8235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5656A644-8F7B-478D-A7FB-5784D8BA8235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5656A644-8F7B-478D-A7FB-5784D8BA8235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5656A644-8F7B-478D-A7FB-5784D8BA8235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA35586F-0605-4430-8CC5-864BF656FE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA35586F-0605-4430-8CC5-864BF656FE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA35586F-0605-4430-8CC5-864BF656FE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA35586F-0605-4430-8CC5-864BF656FE47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C22CDD6-FA84-42D1-8338-C4CEE099014C}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://everydaysolutions.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ESolutions.Test.Helper.Contracts\\ESolutions.Test.Helper.Contracts.csproj
+		SccProjectName1 = ESolutions.Test.Helper.Contracts
+		SccLocalPath1 = ESolutions.Test.Helper.Contracts
+		SccProjectUniqueName2 = ESolutions.Test.Helper\\ESolutions.Test.Helper.csproj
+		SccProjectName2 = ESolutions.Test.Helper
+		SccLocalPath2 = ESolutions.Test.Helper
+		SccProjectUniqueName3 = ESolutions.Test\\ESolutions.Test.csproj
+		SccProjectName3 = ESolutions.Test
+		SccLocalPath3 = ESolutions.Test
+		SccProjectUniqueName4 = ESolutions\\ESolutions.csproj
+		SccProjectName4 = ESolutions
+		SccLocalPath4 = ESolutions
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ESolutions3.vsmdi
+	EndGlobalSection
+EndGlobal
