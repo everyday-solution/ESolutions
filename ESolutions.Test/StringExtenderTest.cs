@@ -138,6 +138,16 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestThatUnderscoreConvertsCamelcaseTextToUnderscoredText()
 		{
+			String testText = "activeRecord";
+
+			Assert.AreEqual("active_record", testText.Underscore());
+		}
+		#endregion
+
+		#region TestThatUnderscoreConvertsPascalcaseTextToUnderscoredText
+		[TestMethod]
+		public void TestThatUnderscoreConvertsPascalcaseTextToUnderscoredText()
+		{
 			String testText = "ActiveRecord";
 
 			Assert.AreEqual("active_record", testText.Underscore());
@@ -150,7 +160,17 @@ namespace ESolutions.Test
 		{
 			String testText = "active_record";
 
-			Assert.AreEqual("ActiveRecord", testText.Camelize());
+			Assert.AreEqual("activeRecord", testText.Camelize());
+		}
+		#endregion
+
+		#region TestThatPascalizeConvertsUnderscoredTextToPascalizedText
+		[TestMethod]
+		public void TestThatPascalizeConvertsUnderscoredTextToPascalizedText()
+		{
+			String testText = "active_record";
+
+			Assert.AreEqual("ActiveRecord", testText.Pascalize());
 		}
 		#endregion
 

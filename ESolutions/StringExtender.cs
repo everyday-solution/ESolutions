@@ -446,26 +446,20 @@ namespace ESolutions
 		/// <returns></returns>
 		public static String Underscore(this String text)
 		{
-			String result = String.Empty;
-
-			String[] parts = Regex.Split(text, "(?<!^)(?=[A-Z])");
-
-			foreach (String current in parts)
-			{
-				result += String.Format("{0}_", current.ToLower());
-			}
-			return result.Trim('_');
+			var parts = Regex.Split(text, "(?<!^)(?=[A-Z])")
+				.Select(runner => runner.ToLower());
+			return String.Join("_", parts);
 		}
 		#endregion
 
-		#region Camelize
+		#region Pascalize
 		/// <summary>
 		/// Capitalizes the first letter of each word in the string and
 		/// removes all whitespaces.
 		/// </summary>
 		/// <param name="text">The text.</param>
 		/// <returns></returns>
-		public static String Camelize(this String text)
+		public static String Pascalize(this String text)
 		{
 			String result = String.Empty;
 			List<String> parts = text.Split('_').ToList();
@@ -473,6 +467,20 @@ namespace ESolutions
 			{
 				result += Char.ToUpper(part[0]) + part.Substring(1, part.Length - 1);
 			});
+
+			return result;
+		}
+		#endregion
+
+		#region Camelize
+		public static String Camelize(this String text)
+		{
+			String result = text.Pascalize();
+
+			if (result.Any())
+			{
+				result = Char.ToLower(result[0]) + result.Substring(1, result.Length - 1);
+			}
 
 			return result;
 		}

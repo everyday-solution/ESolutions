@@ -16,6 +16,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("en-US")]
 [assembly: ComVisible(false)]
 [assembly: Guid("e430d9f5-2f04-4e3a-a29f-edab5f2647f9")]
-[assembly: AssemblyVersion("1.8.9.0")]
-[assembly: AssemblyFileVersion("1.8.9.0")]
+[assembly: AssemblyVersion("1.8.10.0")]
+[assembly: AssemblyFileVersion("1.8.10.0")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ESolutions.Test")]
