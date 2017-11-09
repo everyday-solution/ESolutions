@@ -15,5 +15,5 @@ Extends the Dotnet-System namespace by handy extensions and tools
 ## namespace: ESolutions.Drawing
 * Extenders for Size, Image and Bitmap to size, shrink and crop images
 
-
+## Just a concurrent comment
 
