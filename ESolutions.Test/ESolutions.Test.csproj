@@ -77,6 +77,7 @@
     <Compile Include="DateTimeExtenderTests.cs" />
     <Compile Include="ExceptionExtenderTests.cs" />
     <Compile Include="GoogleAuthenticatorTests.cs" />
+    <Compile Include="GuidExtenderTests.cs" />
     <Compile Include="ImageExtenderTests.cs" />
     <Compile Include="Int32ExtenderTests.cs" />
     <Compile Include="Interfaces\IDependencyMapping07.cs" />

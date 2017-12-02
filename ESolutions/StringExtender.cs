@@ -157,18 +157,6 @@ namespace ESolutions
 		}
 		#endregion
 
-		#region ToShortGuid
-		/// <summary>
-		/// Converts a guid to a short string without dashed or other obstacles
-		/// </summary>
-		/// <param name="guid">The unique identifier.</param>
-		/// <returns></returns>
-		public static String ToShortString(this Guid guid)
-		{
-			return guid.ToString().Replace("-", String.Empty);
-		}
-		#endregion
-
 		#region IsInt32
 		/// <summary>
 		/// Determines whether the specified input is int32.

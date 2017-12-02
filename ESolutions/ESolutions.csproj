@@ -81,6 +81,7 @@
     <Compile Include="Drawing\SizeExtender.cs" />
     <Compile Include="ExceptionExtender.cs" />
     <Compile Include="GermanFederalStates.cs" />
+    <Compile Include="GuidExtender.cs" />
     <Compile Include="Int32Extender.cs" />
     <Compile Include="IO\FileInfoExtender.cs" />
     <Compile Include="LinqExtender.cs" />
