@@ -44,7 +44,7 @@ namespace ESolutions.Security.Cryptography
 		//Methods
 		#region GetSaltedSHA512Hash
 		/// <summary>
-		/// Gets the salted sh a512 hash.
+		/// Gets the salted sha512 hash.
 		/// </summary>
 		/// <param name="password">The password.</param>
 		/// <returns></returns>
@@ -75,6 +75,44 @@ namespace ESolutions.Security.Cryptography
 
 			var hash = SHA512.Create().ComputeHash(Encoding.Unicode.GetBytes(saltedPassword.ToString()));
 			return new PasswordHash() { Hash = Encoding.Unicode.GetString(hash), Salt = salt };
+		}
+		#endregion
+
+		#region GetSecurePasswordHash
+		/// <summary>
+		/// Gets the Rfc2898 based has that will additionally be encrypted with rijndael using the key parameter.
+		/// </summary>
+		/// <param name="password">The password to be encrypted.</param>
+		/// <param name="key">The key used for the rijndael encryption.</param>
+		/// <returns>A class containing the generated hash and salt.</returns>
+		public static PasswordHash GetSecurePasswordHash(String password, String key)
+		{
+			var salt = Guid.NewGuid().ToString();
+			return PasswordHash.GetSecurePasswordHash(password, salt, key);
+		}
+		#endregion
+
+		#region GetSecurePasswortHash
+		/// <summary>
+		/// Gets the Rfc2898 based has that will additionally be encrypted with rijndael using the key parameter.
+		/// </summary>
+		/// <param name="password">The password to be encrypted.</param>
+		/// <param name="key">The key used for the rijndael encryption.</param>
+		/// <returns>A class containing the generated hash and salt.</returns>
+		public static PasswordHash GetSecurePasswordHash(String password, String salt, String key)
+		{
+			var saltBytes = Encoding.UTF8.GetBytes(salt);
+			var rfcBytes= new Rfc2898DeriveBytes(password, saltBytes, 64000);
+			var hash = Encoding.UTF8.GetString(rfcBytes.GetBytes(100));
+
+			var crypter = new Rijndael
+			{
+				EncryptionIV = salt,
+				EncryptionSecret = key
+			};
+			var cryptedHash = crypter.Encrypt(hash);
+
+			return new PasswordHash() { Hash = cryptedHash, Salt = salt };
 		}
 		#endregion
 	}
