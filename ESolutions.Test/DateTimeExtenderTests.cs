@@ -380,6 +380,29 @@ namespace ESolutions.Test
 		}
 		#endregion
 
+		#region TestGetHolidaysIn2008
+		/// <summary>
+		/// Tests the get holidays in2008. In 2008 "Christi Himmelfahrt" und "Tag der Arbeit" fell on the same day. 
+		/// SortedListe does not like to equal keys ;-)
+		/// </summary>
+		[TestMethod]
+		public void TestGetHolidaysIn2008()
+		{
+			try
+			{
+				DateTime actual = new DateTime(2008, 1, 1);
+				var holidays = actual.GetGermanHolidays(GermanFederalStates.Unknown);
+				Assert.IsTrue(holidays.ContainsKey(new DateTime(2008, 5, 1)));
+				var firstOfMay = holidays[new DateTime(2008, 5, 1)];
+				Assert.AreEqual("Tag der Arbeit, Christi Himmelfahrt", firstOfMay);
+			}
+			catch
+			{
+				Assert.Fail();
+			}
+		}
+		#endregion
+
 		#region TestFirstDayOfMonth
 		[TestMethod]
 		public void TestFirstDayOfMonth()

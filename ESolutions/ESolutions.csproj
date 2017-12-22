@@ -62,6 +62,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.XML" />
@@ -75,6 +76,7 @@
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\SettingsBase.cs" />
     <Compile Include="ConverterException.cs" />
+    <Compile Include="Data\CsvFile.cs" />
     <Compile Include="DateTimeExtender.cs" />
     <Compile Include="Drawing\BitmapExtender.cs" />
     <Compile Include="Drawing\ImageExtender.cs" />
