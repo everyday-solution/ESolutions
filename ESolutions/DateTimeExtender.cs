@@ -232,8 +232,11 @@ namespace ESolutions
 			//Karfreitag
 			holidays.Add(new Holiday { Day = osterSonntag.AddDays(-2), Name = "Karfreitag" });
 
-			//Ostersonntag
-			holidays.Add(new Holiday { Day = osterSonntag, Name = "Ostersonntag" });
+            //Ostersonntag
+            if (state == GermanFederalStates.Brandenburg)
+            {
+                holidays.Add(new Holiday { Day = osterSonntag, Name = "Ostersonntag" });
+            }
 
 			//Ostermontag
 			holidays.Add(new Holiday { Day = osterSonntag.AddDays(1), Name = "Ostermontag" });
@@ -244,8 +247,11 @@ namespace ESolutions
 			//Christi Himmelfahrt
 			holidays.Add(new Holiday { Day = osterSonntag.AddDays(39), Name = "Christi Himmelfahrt" });
 
-			//Pfingstsonntag
-			holidays.Add(new Holiday { Day = osterSonntag.AddDays(49), Name = "Pfingstsonntag" });
+            //Pfingstsonntag
+            if (state == GermanFederalStates.Brandenburg)
+            {
+                holidays.Add(new Holiday { Day = osterSonntag.AddDays(49), Name = "Pfingstsonntag" });
+            }
 
 			//Pfingstmontag
 			holidays.Add(new Holiday { Day = osterSonntag.AddDays(50), Name = "Pfingstmontag" });
@@ -282,8 +288,10 @@ namespace ESolutions
 				if (
 					state == GermanFederalStates.Brandenburg ||
 					state == GermanFederalStates.MecklenburgVorpommern ||
+                    state == GermanFederalStates.Hamburg ||
 					state == GermanFederalStates.Sachsen ||
 					state == GermanFederalStates.SachsenAnhalt ||
+                    state == GermanFederalStates.SchleswigHolstein ||
 					state == GermanFederalStates.Thueringen)
 				{
 					holidays.Add(new Holiday { Day = new DateTime(year, 10, 31), Name = "Reformationstag" });

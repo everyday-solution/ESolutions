@@ -190,11 +190,9 @@ namespace ESolutions.Test
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Unknown);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
@@ -208,7 +206,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.BadenWuerttemberg);
-			Assert.AreEqual(14, actual.Count);
+			Assert.AreEqual(12, actual.Count);
 		}
 		#endregion
 
@@ -218,7 +216,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Bayern);
-			Assert.AreEqual(14, actual.Count);
+			Assert.AreEqual(12, actual.Count);
 		}
 		#endregion
 
@@ -228,7 +226,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Berlin);
-			Assert.AreEqual(11, actual.Count);
+			Assert.AreEqual(9, actual.Count);
 		}
 		#endregion
 
@@ -248,7 +246,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Bremen);
-			Assert.AreEqual(11, actual.Count);
+			Assert.AreEqual(9, actual.Count);
 		}
 		#endregion
 
@@ -258,7 +256,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Hamburg);
-			Assert.AreEqual(11, actual.Count);
+			Assert.AreEqual(10, actual.Count);
 		}
 		#endregion
 
@@ -268,7 +266,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Hessen);
-			Assert.AreEqual(12, actual.Count);
+			Assert.AreEqual(10, actual.Count);
 		}
 		#endregion
 
@@ -278,7 +276,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.MecklenburgVorpommern);
-			Assert.AreEqual(12, actual.Count);
+			Assert.AreEqual(10, actual.Count);
 		}
 		#endregion
 
@@ -288,7 +286,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Niedersachsen);
-			Assert.AreEqual(11, actual.Count);
+			Assert.AreEqual(9, actual.Count);
 		}
 		#endregion
 
@@ -298,7 +296,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.NordrheinWestfalen);
-			Assert.AreEqual(13, actual.Count);
+			Assert.AreEqual(11, actual.Count);
 		}
 		#endregion
 
@@ -308,7 +306,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.RheinlandPfalz);
-			Assert.AreEqual(13, actual.Count);
+			Assert.AreEqual(11, actual.Count);
 		}
 		#endregion
 
@@ -318,7 +316,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Saarland);
-			Assert.AreEqual(14, actual.Count);
+			Assert.AreEqual(12, actual.Count);
 		}
 		#endregion
 
@@ -328,7 +326,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Sachsen);
-			Assert.AreEqual(13, actual.Count);
+			Assert.AreEqual(11, actual.Count);
 		}
 		#endregion
 
@@ -338,7 +336,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.SachsenAnhalt);
-			Assert.AreEqual(13, actual.Count);
+			Assert.AreEqual(11, actual.Count);
 		}
 		#endregion
 
@@ -348,7 +346,7 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.SchleswigHolstein);
-			Assert.AreEqual(11, actual.Count);
+			Assert.AreEqual(10, actual.Count);
 		}
 		#endregion
 
@@ -358,16 +356,16 @@ namespace ESolutions.Test
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Thueringen);
-			Assert.AreEqual(12, actual.Count);
+			Assert.AreEqual(10, actual.Count);
 		}
 		#endregion
 
-		#region TestIsHolidayChristmas
+		#region TestIsHolidayEasterMondayInBrandenburg
 		[TestMethod]
-		public void TestIsHolidayChristmas()
+		public void TestIsHolidayEasterMondayInBrandenburg()
 		{
 			DateTime actual = new DateTime(2011, 4, 24);
-			Assert.IsTrue(actual.IsGermanHoliday(GermanFederalStates.Unknown));
+			Assert.IsTrue(actual.IsGermanHoliday(GermanFederalStates.Brandenburg));
 		}
 		#endregion
 
