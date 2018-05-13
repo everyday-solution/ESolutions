@@ -26,6 +26,7 @@ namespace ESolutions
 		Sachsen,
 		SachsenAnhalt,
 		SchleswigHolstein,
-		Thueringen
+		Thueringen,
+        All
 	}
 }

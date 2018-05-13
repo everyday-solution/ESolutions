@@ -182,32 +182,92 @@ namespace ESolutions.Test
 		}
 		#endregion
 
-		#region TestAllHolidaysOf2011
+
+		#region TestGetGermanHolidaysOfUnknwonFederalState
 		[TestMethod]
-		public void TestAllHolidaysOf2011()
+		public void TestGetGermanHolidaysOfUnknwonFederalState()
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Unknown);
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
-			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
-		}
-		#endregion
+            Assert.AreEqual(9, actual.Count());
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
+        #endregion
 
-		#region TestHolidaysInBadenWuertemberg
-		[TestMethod]
+        #region TestGetGermanHolidaysOfAllFederalState
+        [TestMethod]
+        public void TestGetGermanHolidaysOfAllFederalState()
+        {
+            DateTime reference = new DateTime(2011, 1, 1);
+            SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.All);
+            Assert.AreEqual(17, actual.Count());
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            //Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            //Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 8, 8))) //Augsburger Hohes Friedensfest
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
+        #endregion
+
+        #region TestHolidaysInBadenWuertemberg
+        [TestMethod]
 		public void TestHolidaysInBadenWuertemberg()
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.BadenWuerttemberg);
 			Assert.AreEqual(12, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInBayern
@@ -217,7 +277,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Bayern);
 			Assert.AreEqual(12, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInBerlin
@@ -227,7 +306,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Berlin);
 			Assert.AreEqual(9, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInBrandenburg
@@ -237,7 +335,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Brandenburg);
 			Assert.AreEqual(12, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInBremen
@@ -247,7 +364,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Bremen);
 			Assert.AreEqual(9, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInHamburg
@@ -257,7 +393,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Hamburg);
 			Assert.AreEqual(10, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInHessen
@@ -267,7 +422,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Hessen);
 			Assert.AreEqual(10, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInMecklenburgVorpommern
@@ -277,7 +451,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.MecklenburgVorpommern);
 			Assert.AreEqual(10, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInNiedersachsen
@@ -287,7 +480,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Niedersachsen);
 			Assert.AreEqual(9, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInNordrheinWestfalen
@@ -297,7 +509,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.NordrheinWestfalen);
 			Assert.AreEqual(11, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInRheinlandPfalz
@@ -307,7 +538,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.RheinlandPfalz);
 			Assert.AreEqual(11, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInSaarland
@@ -317,7 +567,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Saarland);
 			Assert.AreEqual(12, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInSachsen
@@ -327,7 +596,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Sachsen);
 			Assert.AreEqual(11, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInSachsenAnhalt
@@ -337,7 +625,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.SachsenAnhalt);
 			Assert.AreEqual(11, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInSchleswigHolstein
@@ -347,7 +654,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.SchleswigHolstein);
 			Assert.AreEqual(10, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestHolidaysInThueringen
@@ -357,7 +683,26 @@ namespace ESolutions.Test
 			DateTime reference = new DateTime(2011, 1, 1);
 			SortedList<DateTime, String> actual = reference.GetGermanHolidays(GermanFederalStates.Thueringen);
 			Assert.AreEqual(10, actual.Count);
-		}
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 1, 6))); //Heilige Drei Könige
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 21))); //Gründonnerstag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 22))); //Karfreitag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 4, 24))); //Ostersonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 4, 25))); //Ostermontag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 5, 1))); //Tag der Arbeit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 2))); //Christi Himmelfahrt
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 12))); //Pfingstsonntag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 6, 13))); //Pfingstmontag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 6, 23))); //Fronleichnam
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 8))); //Augsburger Hohes Friedensfest
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 8, 15))); //Mariä Himmlefahrt
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 3))); //Tag der dt. Einheit
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 10, 31))); //Reformationstag
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 1))); //Allerheiligen
+            Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
+            Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+        }
 		#endregion
 
 		#region TestIsHolidayEasterMondayInBrandenburg
