@@ -7,7 +7,7 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<licenseUrl>https://github.com/everyday-solution/ESolutions/blob/master/LICENSE</licenseUrl>
-		<projectUrl>https://github.com/everyday-solution/ESolutions/blob/master/</projectUrl>
+		<projectUrl>https://github.com/everyday-solution/ESolutions</projectUrl>
 		<iconUrl>http://www.everyday-solutions.de/images/es_logo_mid.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>

@@ -10,28 +10,6 @@ namespace ESolutions
     /// </summary>
     public static class DateTimeExtender
     {
-        //Classes
-        #region Holiday
-        private class Holiday
-        {
-            #region Day
-            public DateTime Day
-            {
-                get;
-                set;
-            }
-            #endregion
-
-            #region Name
-            public String Name
-            {
-                get;
-                set;
-            }
-            #endregion
-        }
-        #endregion
-
         //Methods
         #region GetNearestOccurence
         /// <summary>
@@ -186,13 +164,12 @@ namespace ESolutions
         /// Determines whether the specfied date is a holiday in germany.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <param name="state">The state.</param>
         /// <returns>
         ///   <c>true</c> if the date is a holiday in germany; otherwise, <c>false</c>.
         /// </returns>
-        public static Boolean IsGermanHoliday(this DateTime value, GermanFederalStates state)
+        public static Boolean IsGermanHoliday(this DateTime value)
         {
-            return value.GetGermanHolidays(state).ContainsKey(value.Date);
+            return value.GetGermanHolidaysGrouped(GermanFederalStates.Unknown).ContainsKey(value.Date);
         }
         #endregion
 
@@ -201,24 +178,59 @@ namespace ESolutions
         /// Determines whether the specfied date is a holiday in germany.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="state">The state.</param>
         /// <returns>
         ///   <c>true</c> if the date is a holiday in germany; otherwise, <c>false</c>.
         /// </returns>
-        public static Boolean IsGermanHoliday(this DateTime value)
+        public static Boolean IsGermanHoliday(this DateTime value, GermanFederalStates state)
         {
-            return value.GetGermanHolidays(GermanFederalStates.Unknown).ContainsKey(value.Date);
+            return value.GetGermanHolidaysGrouped(state).ContainsKey(value.Date);
         }
         #endregion
 
-        #region GetGermanHolidayOfYear
-        public static SortedList<DateTime, String> GetGermanHolidays(this DateTime value, GermanFederalStates state)
+        #region IsGermanHoliday
+        /// <summary>
+        /// Determines whether the specfied date is a holiday in germany.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="state">The state.</param>
+        /// <returns>
+        ///   <c>true</c> if the date is a holiday in germany; otherwise, <c>false</c>.
+        /// </returns>
+        public static Boolean IsGermanHoliday(this DateTime value, GermanHolidays holiday)
+        {
+            return value
+                .GetGermanHolidays(GermanFederalStates.All)
+                .FirstOrDefault(runner => runner.Day.Date == value.Date) != null;
+        }
+        #endregion
+
+        #region GetGermanHolidaysGrouped
+        /// <summary>
+        /// Gets the german holidays grouped by day.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="state">The state.</param>
+        /// <returns></returns>
+        public static Dictionary<DateTime, IEnumerable<Holiday>> GetGermanHolidaysGrouped(this DateTime value, GermanFederalStates state)
+        {
+            var holidays = value.GetGermanHolidays(state)
+                .GroupBy(runner => runner.Day)
+                .ToDictionary(runner => runner.Key, runner => runner.ToList() as IEnumerable<Holiday>);
+
+            return holidays;
+        }
+        #endregion
+
+        #region GetGermanHolidays
+        public static List<Holiday> GetGermanHolidays(this DateTime value, GermanFederalStates state)
         {
             List<Holiday> holidays = new List<Holiday>();
             Int32 year = value.Year;
             DateTime osterSonntag = value.GetOsterSonntag();
 
             //1. Neujahr
-            holidays.Add(new Holiday { Day = new DateTime(year, 1, 1), Name = "Neujahr" });
+            holidays.Add(new Holiday(new DateTime(year, 1, 1), GermanHolidays.Neujahr, "Neujahr"));
 
             //2. Heilige Drei Könige
             if (
@@ -227,45 +239,45 @@ namespace ESolutions
                 state == GermanFederalStates.Bayern ||
                 state == GermanFederalStates.SachsenAnhalt)
             {
-                holidays.Add(new Holiday { Day = new DateTime(year, 1, 6), Name = "Heilige Drei Könige" });
+                holidays.Add(new Holiday(new DateTime(year, 1, 6), GermanHolidays.HeiligeDreiKoenige, "Heilige Drei Könige"));
             }
 
             //3. Gründonnerstag (nur für Schüler)
             if (state == GermanFederalStates.All ||
                 state == GermanFederalStates.BadenWuerttemberg)
             {
-                //holidays.Add(new Holiday { Day = osterSonntag.AddDays(-3), Name = "Karfreitag" });
+                //holidays.Add(new Holiday(osterSonntag.AddDays(-3), GermanHolidays.Gruendonnerstag, "Gründonnerstag"));
             }
 
             //4. Karfreitag
-            holidays.Add(new Holiday { Day = osterSonntag.AddDays(-2), Name = "Karfreitag" });
+            holidays.Add(new Holiday(osterSonntag.AddDays(-2), GermanHolidays.Karfreitag, "Karfreitag"));
 
             //5. Ostersonntag
             if (state == GermanFederalStates.All ||
                 state == GermanFederalStates.Brandenburg)
             {
-                holidays.Add(new Holiday { Day = osterSonntag, Name = "Ostersonntag" });
+                holidays.Add(new Holiday(osterSonntag, GermanHolidays.Ostersonntag, "Ostersonntag"));
             }
 
             //6. Ostermontag
-            holidays.Add(new Holiday { Day = osterSonntag.AddDays(1), Name = "Ostermontag" });
+            holidays.Add(new Holiday(osterSonntag.AddDays(1), GermanHolidays.Ostermontag, "Ostermontag"));
 
             //7. Erster Mai, Tag der Arbeit
-            holidays.Add(new Holiday { Day = new DateTime(year, 5, 1), Name = "Tag der Arbeit" });
+            holidays.Add(new Holiday(new DateTime(year, 5, 1), GermanHolidays.TagDerArbeit, "Tag der Arbeit"));
 
             //8. (Christi-)Himmelfahrt(stag)
-            holidays.Add(new Holiday { Day = osterSonntag.AddDays(39), Name = "Christi Himmelfahrt" });
+            holidays.Add(new Holiday(osterSonntag.AddDays(39), GermanHolidays.ChristiHimmelfahrt, "Christi Himmelfahrt"));
 
             //9. Pfingstsonntag
             if (
                 state == GermanFederalStates.All ||
                 state == GermanFederalStates.Brandenburg)
             {
-                holidays.Add(new Holiday { Day = osterSonntag.AddDays(49), Name = "Pfingstsonntag" });
+                holidays.Add(new Holiday(osterSonntag.AddDays(49), GermanHolidays.Pfingstsonntag, "Pfingstsonntag"));
             }
 
             //10. Pfingstmontag
-            holidays.Add(new Holiday { Day = osterSonntag.AddDays(50), Name = "Pfingstmontag" });
+            holidays.Add(new Holiday(osterSonntag.AddDays(50), GermanHolidays.Pfingstmontag, "Pfingstmontag"));
 
             //11. Fronleichnam(stag)
             if (
@@ -277,26 +289,26 @@ namespace ESolutions
                 state == GermanFederalStates.RheinlandPfalz ||
                 state == GermanFederalStates.Saarland)
             {
-                holidays.Add(new Holiday { Day = osterSonntag.AddDays(60), Name = "Fronleichnam" });
+                holidays.Add(new Holiday(osterSonntag.AddDays(60), GermanHolidays.Fronleichnam, "Fronleichnam"));
             }
 
-            //12. Augsburger Hohes Friedensfest
+            //12. Augsburger Hohes Friedensfest (nur in Augsburg)
 
             //13. Mariä Himmelfahrt
             if (
                 state == GermanFederalStates.All ||
                 state == GermanFederalStates.Saarland)
             {
-                holidays.Add(new Holiday { Day = new DateTime(year, 8, 15), Name = "Mariä Himmelfahrt" });
+                holidays.Add(new Holiday(new DateTime(year, 8, 15), GermanHolidays.MariaHimmelfahrt, "Mariä Himmelfahrt"));
             }
 
             //14. Tag der dt. Einheit
-            holidays.Add(new Holiday { Day = new DateTime(year, 10, 3), Name = "Tag der dt. Einheit" });
+            holidays.Add(new Holiday(new DateTime(year, 10, 3), GermanHolidays.TagDerDeutschenEinheit, "Tag der dt. Einheit"));
 
             //15. 500 Jahre Reformationstag
             if (year == 2017)
             {
-                holidays.Add(new Holiday { Day = new DateTime(2017, 10, 31), Name = "Reformationstag" });
+                holidays.Add(new Holiday(new DateTime(2017, 10, 31), GermanHolidays.Reformationstag, "Reformationstag"));
             }
             else
             {
@@ -311,7 +323,7 @@ namespace ESolutions
                     state == GermanFederalStates.SchleswigHolstein ||
                     state == GermanFederalStates.Thueringen)
                 {
-                    holidays.Add(new Holiday { Day = new DateTime(year, 10, 31), Name = "Reformationstag" });
+                    holidays.Add(new Holiday(new DateTime(year, 10, 31), GermanHolidays.Reformationstag, "Reformationstag"));
                 }
             }
 
@@ -324,7 +336,7 @@ namespace ESolutions
                 state == GermanFederalStates.RheinlandPfalz ||
                 state == GermanFederalStates.Saarland)
             {
-                holidays.Add(new Holiday { Day = new DateTime(year, 11, 1), Name = "Allerheiligen" });
+                holidays.Add(new Holiday(new DateTime(year, 11, 1), GermanHolidays.Allerheiligen, "Allerheiligen"));
             }
 
             //17. Buß und Bettag
@@ -339,23 +351,16 @@ namespace ESolutions
                 }
                 while (referenceDay.DayOfWeek != DayOfWeek.Wednesday);
 
-                holidays.Add(new Holiday { Day = referenceDay, Name = "Buß- und Bettag" });
+                holidays.Add(new Holiday(referenceDay, GermanHolidays.BussUndBettag, "Buß- und Bettag"));
             }
 
             //18. 1. Weihnachtstag
-            holidays.Add(new Holiday { Day = new DateTime(year, 12, 25), Name = "1. Weihnachtstag" });
+            holidays.Add(new Holiday(new DateTime(year, 12, 25), GermanHolidays.Weihnachtsfeiertag1, "1. Weihnachtstag"));
 
             //19. 2. Weihnachtstag
-            holidays.Add(new Holiday { Day = new DateTime(year, 12, 26), Name = "2. Weihnachtstag" });
+            holidays.Add(new Holiday(new DateTime(year, 12, 26), GermanHolidays.Weihnachtsfeiertag2, "2. Weihnachtstag"));
 
-            var grouped = holidays.GroupBy(runner => runner.Day);
-            SortedList<DateTime, String> result = new SortedList<DateTime, String>();
-            foreach (var runner in grouped)
-            {
-                result.Add(runner.Key, String.Join(", ", runner.Select(x => x.Name)));
-            }
-
-            return result;
+            return holidays;
         }
         #endregion
 
