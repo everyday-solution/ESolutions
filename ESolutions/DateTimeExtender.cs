@@ -201,6 +201,7 @@ namespace ESolutions
         {
             return value
                 .GetGermanHolidays(GermanFederalStates.All)
+                .Where(runner=>runner.GermanHoliday == holiday)
                 .FirstOrDefault(runner => runner.Day.Date == value.Date) != null;
         }
         #endregion

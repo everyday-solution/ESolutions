@@ -180,11 +180,22 @@ namespace ESolutions.Test
 			DateTime expected = new DateTime(2011, 4, 24);
 			Assert.AreEqual(expected, actual);
 		}
-		#endregion
+        #endregion
+
+        #region TestIsHoliday
+        [TestMethod]
+        public void TestIsHoliday()
+        {
+            var date = new DateTime(2018, 5, 31);
+            var isHoliday = date.IsGermanHoliday(GermanHolidays.Ostersonntag);
+
+            Assert.IsFalse(isHoliday);
+        }
+        #endregion
 
 
-		#region TestGetGermanHolidaysOfUnknwonFederalState
-		[TestMethod]
+        #region TestGetGermanHolidaysOfUnknwonFederalState
+        [TestMethod]
 		public void TestGetGermanHolidaysOfUnknwonFederalState()
 		{
 			DateTime reference = new DateTime(2011, 1, 1);
