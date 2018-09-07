@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Authors>Tobias Mundt - everyday Solutions</Authors>
+    <Company>Tobias Mundt - everyday Solutions</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIconUrl>http://www.everyday-solutions.de/images/es_logo_mid.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/everyday-solution/ESolutions</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/everyday-solution/ESolutions/blob/master/LICENSE</PackageLicenseUrl>
+    <Description>Contains extenders for basic types like String and DateTime as well as a simple Rijndael-Encrypter along with an Google-Authenticator implementation. And some more ;-)</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="StringTable.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StringTable.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="StringTable.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringTable.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

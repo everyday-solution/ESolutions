@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions.Test.Helper", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions.Test.Helper.Contracts", "ESolutions.Test.Helper.Contracts\ESolutions.Test.Helper.Contracts.csproj", "{BA35586F-0605-4430-8CC5-864BF656FE47}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESolutions.Core", "ESolutions.Core\ESolutions.Core.csproj", "{7ECBEBD4-9018-44F9-A302-B06F844F6A6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,30 +35,16 @@ Global
 		{BA35586F-0605-4430-8CC5-864BF656FE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA35586F-0605-4430-8CC5-864BF656FE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA35586F-0605-4430-8CC5-864BF656FE47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ECBEBD4-9018-44F9-A302-B06F844F6A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ECBEBD4-9018-44F9-A302-B06F844F6A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ECBEBD4-9018-44F9-A302-B06F844F6A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ECBEBD4-9018-44F9-A302-B06F844F6A6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2C22CDD6-FA84-42D1-8338-C4CEE099014C}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://everydaysolutions.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ESolutions.Test.Helper.Contracts\\ESolutions.Test.Helper.Contracts.csproj
-		SccProjectName1 = ESolutions.Test.Helper.Contracts
-		SccLocalPath1 = ESolutions.Test.Helper.Contracts
-		SccProjectUniqueName2 = ESolutions.Test.Helper\\ESolutions.Test.Helper.csproj
-		SccProjectName2 = ESolutions.Test.Helper
-		SccLocalPath2 = ESolutions.Test.Helper
-		SccProjectUniqueName3 = ESolutions.Test\\ESolutions.Test.csproj
-		SccProjectName3 = ESolutions.Test
-		SccLocalPath3 = ESolutions.Test
-		SccProjectUniqueName4 = ESolutions\\ESolutions.csproj
-		SccProjectName4 = ESolutions
-		SccLocalPath4 = ESolutions
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ESolutions3.vsmdi
