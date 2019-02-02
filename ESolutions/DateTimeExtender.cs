@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ESolutions
 {
@@ -201,7 +200,7 @@ namespace ESolutions
         {
             return value
                 .GetGermanHolidays(GermanFederalStates.All)
-                .Where(runner=>runner.GermanHoliday == holiday)
+                .Where(runner => runner.GermanHoliday == holiday)
                 .FirstOrDefault(runner => runner.Day.Date == value.Date) != null;
         }
         #endregion
@@ -250,26 +249,33 @@ namespace ESolutions
                 //holidays.Add(new Holiday(osterSonntag.AddDays(-3), GermanHolidays.Gruendonnerstag, "Gründonnerstag"));
             }
 
-            //4. Karfreitag
+            //4. Frauenkampftag
+            if (state == GermanFederalStates.All ||
+                state == GermanFederalStates.Berlin)
+            {
+                holidays.Add(new Holiday(new DateTime(year, 3, 8), GermanHolidays.InternationalerFrauentag, "Internationaler Frauentag"));
+            }
+
+            //5. Karfreitag
             holidays.Add(new Holiday(osterSonntag.AddDays(-2), GermanHolidays.Karfreitag, "Karfreitag"));
 
-            //5. Ostersonntag
+            //6. Ostersonntag
             if (state == GermanFederalStates.All ||
                 state == GermanFederalStates.Brandenburg)
             {
                 holidays.Add(new Holiday(osterSonntag, GermanHolidays.Ostersonntag, "Ostersonntag"));
             }
 
-            //6. Ostermontag
+            //7. Ostermontag
             holidays.Add(new Holiday(osterSonntag.AddDays(1), GermanHolidays.Ostermontag, "Ostermontag"));
 
-            //7. Erster Mai, Tag der Arbeit
+            //8. Erster Mai, Tag der Arbeit
             holidays.Add(new Holiday(new DateTime(year, 5, 1), GermanHolidays.TagDerArbeit, "Tag der Arbeit"));
 
-            //8. (Christi-)Himmelfahrt(stag)
+            //9. (Christi-)Himmelfahrt(stag)
             holidays.Add(new Holiday(osterSonntag.AddDays(39), GermanHolidays.ChristiHimmelfahrt, "Christi Himmelfahrt"));
 
-            //9. Pfingstsonntag
+            //10. Pfingstsonntag
             if (
                 state == GermanFederalStates.All ||
                 state == GermanFederalStates.Brandenburg)
@@ -277,10 +283,10 @@ namespace ESolutions
                 holidays.Add(new Holiday(osterSonntag.AddDays(49), GermanHolidays.Pfingstsonntag, "Pfingstsonntag"));
             }
 
-            //10. Pfingstmontag
+            //11. Pfingstmontag
             holidays.Add(new Holiday(osterSonntag.AddDays(50), GermanHolidays.Pfingstmontag, "Pfingstmontag"));
 
-            //11. Fronleichnam(stag)
+            //12. Fronleichnam(stag)
             if (
                 state == GermanFederalStates.All ||
                 state == GermanFederalStates.BadenWuerttemberg ||
@@ -293,9 +299,9 @@ namespace ESolutions
                 holidays.Add(new Holiday(osterSonntag.AddDays(60), GermanHolidays.Fronleichnam, "Fronleichnam"));
             }
 
-            //12. Augsburger Hohes Friedensfest (nur in Augsburg)
+            //13. Augsburger Hohes Friedensfest (nur in Augsburg)
 
-            //13. Mariä Himmelfahrt
+            //14. Mariä Himmelfahrt
             if (
                 state == GermanFederalStates.All ||
                 state == GermanFederalStates.Saarland)
@@ -303,17 +309,17 @@ namespace ESolutions
                 holidays.Add(new Holiday(new DateTime(year, 8, 15), GermanHolidays.MariaHimmelfahrt, "Mariä Himmelfahrt"));
             }
 
-            //14. Tag der dt. Einheit
+            //15. Tag der dt. Einheit
             holidays.Add(new Holiday(new DateTime(year, 10, 3), GermanHolidays.TagDerDeutschenEinheit, "Tag der dt. Einheit"));
 
-            //15. 500 Jahre Reformationstag
+            //16. 500 Jahre Reformationstag
             if (year == 2017)
             {
                 holidays.Add(new Holiday(new DateTime(2017, 10, 31), GermanHolidays.Reformationstag, "Reformationstag"));
             }
             else
             {
-                //15. Reformationstag/-fest
+                //16. Reformationstag/-fest
                 if (
                     state == GermanFederalStates.All ||
                     state == GermanFederalStates.Brandenburg ||
@@ -328,7 +334,7 @@ namespace ESolutions
                 }
             }
 
-            //16. Allerheiligen(tag)
+            //17. Allerheiligen(tag)
             if (
                 state == GermanFederalStates.All ||
                 state == GermanFederalStates.BadenWuerttemberg ||
@@ -340,7 +346,7 @@ namespace ESolutions
                 holidays.Add(new Holiday(new DateTime(year, 11, 1), GermanHolidays.Allerheiligen, "Allerheiligen"));
             }
 
-            //17. Buß und Bettag
+            //18. Buß und Bettag
             if (
                 state == GermanFederalStates.All ||
                 state == GermanFederalStates.Sachsen)
@@ -355,10 +361,10 @@ namespace ESolutions
                 holidays.Add(new Holiday(referenceDay, GermanHolidays.BussUndBettag, "Buß- und Bettag"));
             }
 
-            //18. 1. Weihnachtstag
+            //19. 1. Weihnachtstag
             holidays.Add(new Holiday(new DateTime(year, 12, 25), GermanHolidays.Weihnachtsfeiertag1, "1. Weihnachtstag"));
 
-            //19. 2. Weihnachtstag
+            //20. 2. Weihnachtstag
             holidays.Add(new Holiday(new DateTime(year, 12, 26), GermanHolidays.Weihnachtsfeiertag2, "2. Weihnachtstag"));
 
             return holidays;

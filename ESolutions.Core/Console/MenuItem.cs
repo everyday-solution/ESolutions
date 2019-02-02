@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ESolutions.Core.Console
@@ -24,7 +25,15 @@ namespace ESolutions.Core.Console
 		#endregion
 
 		#region Action
-		public Action Action
+		public Action<IEnumerable<String>> Action
+		{
+			get;
+			private set;
+		}
+		#endregion
+
+		#region Arguments
+		public IEnumerable<String> Arguments
 		{
 			get;
 			private set;
@@ -33,11 +42,12 @@ namespace ESolutions.Core.Console
 
 		//Constructor
 		#region MenuItem
-		public MenuItem(Char key, String text, Action action)
+		public MenuItem(Char key, String text, Action<IEnumerable<String>> action, params String[] arguments)
 		{
 			this.Key = key;
 			this.Text = text;
 			this.Action = action;
+			this.Arguments = arguments.ToList();
 		}
 		#endregion
 	}

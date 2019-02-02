@@ -13,8 +13,36 @@ namespace ESolutions.Core.Console
 		#endregion
 
 		//Methods
-		#region PerformMenuLoop
-		public static void Show(List<MenuItem> menuItems)
+		#region Run
+		public static void Run(String[] args, List<MenuItem> menuItems)
+		{
+			if (args?.Length <= 0)
+			{
+				ConsoleMenu.ShowMenu(menuItems);
+			}
+			else if (args.Contains("?"))
+			{
+				foreach (var runner in menuItems)
+				{
+					System.Console.WriteLine($"{runner.Key} => {runner.Text}");
+					foreach (var argumentRunner in runner.Arguments)
+					{
+						System.Console.WriteLine($"\t-{argumentRunner}");
+					}
+				}
+			}
+			else
+			{
+				foreach (var runner in args)
+				{
+					menuItems.FirstOrDefault(x => x.Key == runner.First())?.Action(args);
+				}
+			}
+		}
+		#endregion
+
+		#region ShowMenu
+		private static void ShowMenu(List<MenuItem> menuItems)
 		{
 			var keyChar = exitChar;
 			do
@@ -32,7 +60,7 @@ namespace ESolutions.Core.Console
 				var menuItem = menuItems.FirstOrDefault(runner => runner.Key == keyChar);
 				if (menuItem != null)
 				{
-					menuItem.Action();
+					menuItem.Action(null);
 					System.Console.WriteLine();
 				}
 				else

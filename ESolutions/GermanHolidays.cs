@@ -11,6 +11,7 @@ namespace ESolutions
         Neujahr,
         HeiligeDreiKoenige,
         //Gruendonnerstag,
+        InternationalerFrauentag,
         Karfreitag,
         Ostersonntag,
         Ostermontag,
