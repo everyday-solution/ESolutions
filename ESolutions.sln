@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions", "ESolutions\ESolutions.csproj", "{679DE7A0-6834-41A4-AEFE-0A317F5BF614}"
 EndProject
@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions.Test.Helper.Cont
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESolutions.Core", "ESolutions.Core\ESolutions.Core.csproj", "{7ECBEBD4-9018-44F9-A302-B06F844F6A6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESolutions.Core.Tests", "ESolutions.Core.Tests\ESolutions.Core.Tests.csproj", "{B47C2AD5-CE77-4FD8-B26D-DC52786F8F38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESolutions.Core.Tests", "ESolutions.Core.Tests\ESolutions.Core.Tests.csproj", "{B47C2AD5-CE77-4FD8-B26D-DC52786F8F38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESolutions.Core.Demo", "ESolutions.Core.Demo\ESolutions.Core.Demo.csproj", "{6840DFDF-279A-44C2-8B84-B04ED5A9F872}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{B47C2AD5-CE77-4FD8-B26D-DC52786F8F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B47C2AD5-CE77-4FD8-B26D-DC52786F8F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B47C2AD5-CE77-4FD8-B26D-DC52786F8F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6840DFDF-279A-44C2-8B84-B04ED5A9F872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6840DFDF-279A-44C2-8B84-B04ED5A9F872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6840DFDF-279A-44C2-8B84-B04ED5A9F872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6840DFDF-279A-44C2-8B84-B04ED5A9F872}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
