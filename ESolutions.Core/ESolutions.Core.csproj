@@ -7,10 +7,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageIconUrl>http://www.everyday-solutions.de/images/es_logo_mid.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/everyday-solution/ESolutions</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/everyday-solution/ESolutions/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <Description>Contains extenders for basic types like String and DateTime as well as a simple Rijndael-Encrypter along with an Google-Authenticator implementation. And some more ;-)</Description>
     <Version>1.1.2</Version>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <AssemblyVersion>1.1.2.0</AssemblyVersion>
+    <Copyright>Tobias Mundt - everyday Solutions</Copyright>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>c# console dotnet ioc</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/everyday-solution/ESolutions.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
