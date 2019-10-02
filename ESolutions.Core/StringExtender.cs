@@ -529,7 +529,7 @@ namespace ESolutions.Core
 		#region Split
 		/// <summary>
 		/// Splits the specified input string into parts marked by the splitmarker if it is sourrounded by the
-		/// sourround by. This is used to extend the splitmarker without removing the sourrounding chars.
+		/// sourroundBy attribute. This is used to extend the splitmarker without removing the sourrounding chars.
 		/// </summary>
 		/// <param name="input">The input.</param>
 		/// <param name="splitMarker">The split marker.</param>

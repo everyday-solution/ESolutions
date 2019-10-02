@@ -5,9 +5,16 @@ using System.Security;
 
 namespace ESolutions.Core.Demo
 {
+	/// <summary>
+	/// Demo Program for ESolutions.Core.Console
+	/// </summary>
 	class Program
 	{
 		#region Main
+		/// <summary>
+		/// Defines the entry point of the application.
+		/// </summary>
+		/// <param name="args">The arguments.</param>
 		static void Main(string[] args)
 		{
 			var menuItems = new List<MenuItem>()
