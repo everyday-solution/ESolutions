@@ -339,6 +339,7 @@ namespace ESolutions.Core
 				if (
 					state == GermanFederalStates.All ||
 					state == GermanFederalStates.Brandenburg ||
+					(state == GermanFederalStates.Niedersachsen && year >= 2018) ||
 					state == GermanFederalStates.MecklenburgVorpommern ||
 					state == GermanFederalStates.Hamburg ||
 					state == GermanFederalStates.Sachsen ||

@@ -6,13 +6,21 @@
 		<title>$title$</title>
 		<authors>$author$</authors>
 		<owners>$author$</owners>
-		<licenseUrl>https://github.com/everyday-solution/ESolutions/blob/master/LICENSE</licenseUrl>
+		<license type="expression">MIT</license>
 		<projectUrl>https://github.com/everyday-solution/ESolutions</projectUrl>
+		<icon>images\es_logo_mid.png</icon>
 		<iconUrl>http://www.everyday-solutions.de/images/es_logo_mid.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>$description$</description>
 		<releaseNotes></releaseNotes>
 		<copyright>Copyright 2017</copyright>
 		<tags>system extender encryption password hashing</tags>
+		<dependencies>
+			<group targetFramework="net462">
+			</group>
+		</dependencies>
 	</metadata>
+	<files>
+		<file src="..\es_logo_mid.png" target="images\" />
+	</files>
 </package>

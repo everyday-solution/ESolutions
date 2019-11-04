@@ -455,6 +455,14 @@ namespace ESolutions.Core.Test
 			Assert.False(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
 			Assert.True(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
 			Assert.True(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+
+			var reference2 = new DateTime(2017, 1, 1);
+			var actual2 = reference2.GetGermanHolidaysGrouped(GermanFederalStates.Niedersachsen);
+			Assert.True(actual2.ContainsKey(new DateTime(2017, 10, 31))); //Reformationstag
+
+			var reference3 = new DateTime(2019, 1, 1);
+			var actual3 = reference3.GetGermanHolidaysGrouped(GermanFederalStates.Niedersachsen);
+			Assert.True(actual3.ContainsKey(new DateTime(2019, 10, 31))); //Reformationstag
 		}
 		#endregion
 
