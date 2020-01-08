@@ -75,6 +75,9 @@
     <Compile Include="Collections\SortOrderMover.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\SettingsBase.cs" />
+    <Compile Include="Console\ArgumentOperation.cs" />
+    <Compile Include="Console\ConsoleMenu.cs" />
+    <Compile Include="Console\MenuItem.cs" />
     <Compile Include="ConverterException.cs" />
     <Compile Include="Data\CsvFile.cs" />
     <Compile Include="DateTimeExtender.cs" />

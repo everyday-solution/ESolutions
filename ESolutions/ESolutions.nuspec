@@ -14,13 +14,9 @@
 		<description>$description$</description>
 		<releaseNotes></releaseNotes>
 		<copyright>Copyright 2017</copyright>
-		<tags>system extender encryption password hashing</tags>
-		<dependencies>
-			<group targetFramework="net462">
-			</group>
-		</dependencies>
+		<tags>system extender encryption password hashing console</tags>
 	</metadata>
-	<files>
+  	<files>
 		<file src="..\es_logo_mid.png" target="images\" />
 	</files>
 </package>
