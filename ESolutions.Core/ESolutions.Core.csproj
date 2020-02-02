@@ -1,23 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <Authors>Tobias Mundt - everyday Solutions</Authors>
     <Company>Tobias Mundt - everyday Solutions</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageIconUrl>http://www.everyday-solutions.de/images/es_logo_mid.png</PackageIconUrl>
+    <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/everyday-solution/ESolutions</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Description>Contains extenders for basic types like String and DateTime as well as a simple Rijndael-Encrypter along with an Google-Authenticator implementation. And some more ;-)</Description>
-    <Version>1.1.4</Version>
-    <AssemblyVersion>1.1.4.0</AssemblyVersion>
+    <Version>1.1.5</Version>
+    <AssemblyVersion>1.1.5.0</AssemblyVersion>
     <Copyright>Tobias Mundt - everyday Solutions</Copyright>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>c# console dotnet ioc</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/everyday-solution/ESolutions.git</RepositoryUrl>
-    <FileVersion>1.1.4.0</FileVersion>
+    <FileVersion>1.1.5.0</FileVersion>
+    <PackageIcon>Logo.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.5.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="StringTable.Designer.cs">
@@ -32,6 +37,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringTable.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Users\TobiasMundt\OneDrive\BusinessArea\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
