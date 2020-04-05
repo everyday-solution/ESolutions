@@ -48,8 +48,11 @@ namespace ESolutions
 		/// Initializes the specified file.
 		/// </summary>
 		/// <param name="file">The file.</param>
-		/// <remarks>Initialization is done in a single methods and not in seperate methods to
-		/// remarkebly improve speed.
+		/// <remarks>
+		/// Initialization is done in a single methods and not in seperate methods to
+		/// remarkebly improve speed. MENTION: The location where assemblies are searched is foremost die value 
+		/// from the 'pathToFile' attribute if assemblies. If the attribute is not set the path of the Microkernel.Mappings.xml
+		/// is taken. If the assembly is used and not found in those places the fallback path is used. 
 		/// </remarks>
 		public static void Initialize(FileInfo file)
 		{
@@ -112,9 +115,9 @@ namespace ESolutions
 				foreach (XmlNode current in doc.SelectNodes("//es:assembly", namespaceManager))
 				{
 					AssemblyMapping newMapping = new AssemblyMapping();
-					newMapping.Fullname = current.Attributes[0].Value;
-					newMapping.PathToFile = current.Attributes[1].Value;
-					newMapping.Filename = current.Attributes[2].Value;
+					newMapping.Fullname = current.Attributes["name"].Value;
+					newMapping.PathToFile = current.Attributes["pathToFile"]?.Value ?? file.Directory.FullName;
+					newMapping.Filename = current.Attributes["fileName"].Value;
 
 					try
 					{
@@ -213,8 +216,7 @@ namespace ESolutions
 				throw MicrokernelException.AssemblyNotMapped(typeMapping.DeclaringAssembly);
 			}
 
-			AssemblyName assemblyName = new AssemblyName(assemblyMapping.Fullname);
-			Assembly assembly = Assembly.Load(assemblyName.ToString());
+			Assembly assembly = Assembly.LoadFile(assemblyMapping.File.FullName);
 			#endregion
 
 			#region GetType

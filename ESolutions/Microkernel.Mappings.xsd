@@ -46,7 +46,7 @@
 							<xs:element maxOccurs="unbounded" name="assembly">
 								<xs:complexType>
 									<xs:attribute name="name" type="xs:string" use="required" />
-									<xs:attribute name="pathToFile" type="xs:string" use="required" />
+									<xs:attribute name="pathToFile" type="xs:string" use="optional" />
 									<xs:attribute name="fileName" type="xs:string" use="required" />
 								</xs:complexType>
 							</xs:element>
