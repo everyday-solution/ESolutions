@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace ESolutions
@@ -34,8 +35,12 @@ namespace ESolutions
 		private const String TypeNotContainedPattern = "The assembly {0} did not contain the type {1}";
 		#endregion
 
-		#region TypeDoesNotImplementInterface
+		#region TypeDoesNotImplementInterfacePattern
 		private const String TypeDoesNotImplementInterfacePattern = "The type {0} does not implement the interface {1}";
+		#endregion
+
+		#region InterfaceTypeIsLoadedFromDifferentLocationsPattern
+		private const String InterfaceTypeIsLoadedFromDifferentLocationsPattern = "The interface type {0} is defined in an assembly that is loaded twice from different locations.";
 		#endregion
 
 		#region DuplicateTypeMappingPattern
@@ -125,6 +130,17 @@ namespace ESolutions
 			String message = String.Format(
 				MicrokernelException.TypeDoesNotImplementInterfacePattern,
 				typeName,
+				interfaceName);
+
+			return new MicrokernelException(message);
+		}
+		#endregion
+
+		#region InterfaceTypeIsLoadedFromDifferentLocations
+		internal static MicrokernelException InterfaceTypeIsLoadedFromDifferentLocations(String typeName, String interfaceName)
+		{
+			String message = String.Format(
+				MicrokernelException.InterfaceTypeIsLoadedFromDifferentLocationsPattern,
 				interfaceName);
 
 			return new MicrokernelException(message);
