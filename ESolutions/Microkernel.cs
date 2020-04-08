@@ -228,10 +228,22 @@ namespace ESolutions
 			#endregion
 
 			#region GetInstance
-			InterfaceType result = Activator.CreateInstance(targetType) as InterfaceType;
+			var instance = Activator.CreateInstance(targetType);
 			if (targetType.GetInterface(typeof(InterfaceType).FullName) == null)
 			{
 				throw MicrokernelException.TypeDoesNotImplementInterface(targetType.FullName, typeof(InterfaceType).FullName);
+			}
+			var result = instance as InterfaceType;
+			if (result == null)
+			{
+				var interfaceAssemblyName = typeof(InterfaceType).Assembly.FullName;
+				var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies()
+					.Where(runner => runner.FullName == interfaceAssemblyName)
+					.Select(runner=>runner.Location)
+					.ToList();
+				throw MicrokernelException.InterfaceTypeIsLoadedFromDifferentLocations(
+					typeof(InterfaceType).FullName,
+					loadedAssemblies);
 			}
 			#endregion
 

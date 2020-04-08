@@ -40,7 +40,7 @@ namespace ESolutions
 		#endregion
 
 		#region InterfaceTypeIsLoadedFromDifferentLocationsPattern
-		private const String InterfaceTypeIsLoadedFromDifferentLocationsPattern = "The interface type {0} is defined in an assembly that is loaded twice from different locations.";
+		private const String InterfaceTypeIsLoadedFromDifferentLocationsPattern = "The interface type {0} is defined in an assembly that is loaded twice from different locations: {1}";
 		#endregion
 
 		#region DuplicateTypeMappingPattern
@@ -137,11 +137,13 @@ namespace ESolutions
 		#endregion
 
 		#region InterfaceTypeIsLoadedFromDifferentLocations
-		internal static MicrokernelException InterfaceTypeIsLoadedFromDifferentLocations(String typeName, String interfaceName)
+		internal static MicrokernelException InterfaceTypeIsLoadedFromDifferentLocations(String interfaceName, List<String> locationList)
 		{
+			String locations = String.Join(Environment.NewLine, locationList);
 			String message = String.Format(
 				MicrokernelException.InterfaceTypeIsLoadedFromDifferentLocationsPattern,
-				interfaceName);
+				interfaceName,
+				locations);
 
 			return new MicrokernelException(message);
 		}
