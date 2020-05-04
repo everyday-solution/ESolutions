@@ -9,7 +9,7 @@
     <PackageProjectUrl>https://github.com/everyday-solution/ESolutions</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Description>Contains extenders for basic types like String and DateTime as well as a simple Rijndael-Encrypter along with an Google-Authenticator implementation. And some more ;-)</Description>
-    <Version>1.1.7</Version>
+    <Version>1.1.8</Version>
     <AssemblyVersion>1.1.7.0</AssemblyVersion>
     <Copyright>Tobias Mundt - everyday Solutions</Copyright>
     <RepositoryType>Git</RepositoryType>
