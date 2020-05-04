@@ -10,6 +10,7 @@
 		Ostersonntag,
 		Ostermontag,
 		TagDerArbeit,
+		KapitulationDerWehrmacht75Jahre,
 		ChristiHimmelfahrt,
 		Pfingstsonntag,
 		Pfingstmontag,
@@ -22,6 +23,5 @@
 		BussUndBettag,
 		Weihnachtsfeiertag1,
 		Weihnachtsfeiertag2
-
 	}
 }

@@ -12,19 +12,12 @@ namespace ESolutions.Test
 	[TestClass]
 	public class DateTimeExtenderTests
 	{
-		#region DateTimeExtenderTests
-		public DateTimeExtenderTests()
-		{
-			//
-			// TODO: Add constructor logic here
-			//
-		}
-		#endregion
-
+		//Fields
 		#region testContextInstance
 		private TestContext testContextInstance;
 		#endregion
 
+		//Properties
 		#region TestContext
 		/// <summary>
 		///Gets or sets the test context which provides
@@ -34,45 +27,24 @@ namespace ESolutions.Test
 		{
 			get
 			{
-				return testContextInstance;
+				return this.testContextInstance;
 			}
 			set
 			{
-				testContextInstance = value;
+				this.testContextInstance = value;
 			}
 		}
 		#endregion
 
-		#region Additional test attributes
-		//
-		// You can use the following additional attributes as you write your tests:
-		//
-		// Use ClassInitialize to run code before running the first test in the class
-		// [ClassInitialize()]
-		// public static void MyClassInitialize(TestContext testContext) { }
-		//
-		// Use ClassCleanup to run code after all tests in a class have run
-		// [ClassCleanup()]
-		// public static void MyClassCleanup() { }
-		//
-		// Use TestInitialize to run code before running each test
-		// [TestInitialize()]
-		// public void MyTestInitialize() { }
-		//
-		// Use TestCleanup to run code after each test has run
-		// [TestCleanup()]
-		// public void MyTestCleanup() { }
-		//
-		#endregion
-
+		//Methods
 		#region IsNearestToNext
 		[TestMethod]
 		public void IsNearestToNext()
 		{
-			DateTime birthday = new DateTime(1950, 7, 1);
-			DateTime reference = new DateTime(2009, 6, 1);
+			var birthday = new DateTime(1950, 7, 1);
+			var reference = new DateTime(2009, 6, 1);
 
-			DateTime result = birthday.GetNearestOccurence(reference);
+			var result = birthday.GetNearestOccurence(reference);
 
 			Assert.AreEqual(new DateTime(2009, 7, 1), result);
 		}
@@ -82,10 +54,10 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void IsNearestToLast()
 		{
-			DateTime birthday = new DateTime(1950, 7, 1);
-			DateTime reference = new DateTime(2009, 8, 1);
+			var birthday = new DateTime(1950, 7, 1);
+			var reference = new DateTime(2009, 8, 1);
 
-			DateTime result = birthday.GetNearestOccurence(reference);
+			var result = birthday.GetNearestOccurence(reference);
 
 			Assert.AreEqual(new DateTime(2009, 7, 1), result);
 		}
@@ -95,10 +67,10 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestYearChangeUpper()
 		{
-			DateTime birthday = new DateTime(1950, 4, 1);
-			DateTime reference = new DateTime(2009, 11, 1);
-
-			DateTime result = birthday.GetNearestOccurence(reference);
+			var birthday = new DateTime(1950, 4, 1);
+			var reference = new DateTime(2009, 11, 1);
+			
+			var result = birthday.GetNearestOccurence(reference);
 
 			Assert.AreEqual(new DateTime(2010, 4, 1), result);
 		}
@@ -108,10 +80,10 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestYearChangeLower()
 		{
-			DateTime birthday = new DateTime(1950, 11, 1);
-			DateTime reference = new DateTime(2009, 3, 1);
+			var birthday = new DateTime(1950, 11, 1);
+			var reference = new DateTime(2009, 3, 1);
 
-			DateTime result = birthday.GetNearestOccurence(reference);
+			var result = birthday.GetNearestOccurence(reference);
 
 			Assert.AreEqual(new DateTime(2008, 11, 1), result);
 		}
@@ -121,13 +93,13 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestGetFirstDayOfWeek()
 		{
-			DateTime now = new DateTime(2010, 12, 20);
-			DateTime expected = new DateTime(2010, 12, 20);
+			var now = new DateTime(2010, 12, 20);
+			var expected = new DateTime(2010, 12, 20);
 
-			for (Int32 index = 0; index < 6; index++)
+			for (var index = 0; index < 6; index++)
 			{
 				now = now.AddDays(1);
-				DateTime actual = now.GetFirstDayOfWeek();
+				var actual = now.GetFirstDayOfWeek();
 				Assert.AreEqual(expected, actual);
 			}
 		}
@@ -137,13 +109,13 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestGetLastDayOfWeek()
 		{
-			DateTime now = new DateTime(2010, 12, 20);
-			DateTime expected = new DateTime(2010, 12, 26, 23, 59, 59);
+			var now = new DateTime(2010, 12, 20);
+			var expected = new DateTime(2010, 12, 26, 23, 59, 59);
 
-			for (Int32 index = 0; index < 6; index++)
+			for (var index = 0; index < 6; index++)
 			{
 				now = now.AddDays(1);
-				DateTime actual = now.GetLastDayOfWeek();
+				var actual = now.GetLastDayOfWeek();
 				Assert.AreEqual(expected, actual);
 			}
 		}
@@ -153,9 +125,9 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestSqlLowerBound()
 		{
-			DateTime pointOfTime = new DateTime(2011, 01, 01, 12, 12, 12);
-			DateTime actual = pointOfTime.SqlLowerBound();
-			DateTime expected = new DateTime(2011, 01, 01, 0, 0, 0, 0);
+			var pointOfTime = new DateTime(2011, 01, 01, 12, 12, 12);
+			var actual = pointOfTime.SqlLowerBound();
+			var expected = new DateTime(2011, 01, 01, 0, 0, 0, 0);
 			Assert.AreEqual(expected, actual);
 		}
 		#endregion
@@ -164,9 +136,9 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestSqlUpperBound()
 		{
-			DateTime pointOfTime = new DateTime(2011, 01, 01, 12, 12, 12);
-			DateTime actual = pointOfTime.SqlUpperBound();
-			DateTime expected = new DateTime(2011, 01, 02).AddTicks(-1);
+			var pointOfTime = new DateTime(2011, 01, 01, 12, 12, 12);
+			var actual = pointOfTime.SqlUpperBound();
+			var expected = new DateTime(2011, 01, 02).AddTicks(-1);
 			Assert.AreEqual(expected, actual);
 		}
 		#endregion
@@ -175,9 +147,9 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestOsterSonntagOf2011()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
-			DateTime actual = reference.GetOsterSonntag();
-			DateTime expected = new DateTime(2011, 4, 24);
+			var reference = new DateTime(2011, 1, 1);
+			var actual = reference.GetOsterSonntag();
+			var expected = new DateTime(2011, 4, 24);
 			Assert.AreEqual(expected, actual);
 		}
 		#endregion
@@ -197,7 +169,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestGetGermanHolidaysOfUnknwonFederalState()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Unknown);
 			Assert.AreEqual(9, actual.Count());
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -226,7 +198,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestGetGermanHolidaysOfAllFederalState()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.All);
 			Assert.AreEqual(18, actual.Count());
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -256,7 +228,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInBadenWuertemberg()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.BadenWuerttemberg);
 			Assert.AreEqual(12, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -285,7 +257,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInBayern()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Bayern);
 			Assert.AreEqual(12, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -314,7 +286,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInBerlin()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Berlin);
 			Assert.AreEqual(10, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -337,6 +309,10 @@ namespace ESolutions.Test
 			Assert.IsFalse(actual.ContainsKey(new DateTime(2011, 11, 16))); //Buß und Bettag
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
+
+			var referenceSpecial = new DateTime(2020, 1, 1);
+			var actualSpecial = referenceSpecial.GetGermanHolidaysGrouped(GermanFederalStates.Berlin);
+			Assert.IsTrue(actualSpecial.ContainsKey(new DateTime(2020, 5, 8))); // 75. Jahrestags der Kapitulation der Wehrmacht
 		}
 		#endregion
 
@@ -344,7 +320,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInBrandenburg()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Brandenburg);
 			Assert.AreEqual(12, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -373,7 +349,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInBremen()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Bremen);
 			Assert.AreEqual(9, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -402,7 +378,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInHamburg()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Hamburg);
 			Assert.AreEqual(10, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -431,7 +407,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInHessen()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Hessen);
 			Assert.AreEqual(10, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -460,7 +436,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInMecklenburgVorpommern()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.MecklenburgVorpommern);
 			Assert.AreEqual(10, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -526,7 +502,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInNordrheinWestfalen()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.NordrheinWestfalen);
 			Assert.AreEqual(11, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -555,7 +531,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInRheinlandPfalz()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.RheinlandPfalz);
 			Assert.AreEqual(11, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -584,7 +560,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInSaarland()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Saarland);
 			Assert.AreEqual(12, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -613,7 +589,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInSachsen()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Sachsen);
 			Assert.AreEqual(11, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -642,7 +618,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInSachsenAnhalt()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.SachsenAnhalt);
 			Assert.AreEqual(11, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -671,7 +647,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInSchleswigHolstein()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.SchleswigHolstein);
 			Assert.AreEqual(10, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -700,7 +676,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestHolidaysInThueringen()
 		{
-			DateTime reference = new DateTime(2011, 1, 1);
+			var reference = new DateTime(2011, 1, 1);
 			var actual = reference.GetGermanHolidaysGrouped(GermanFederalStates.Thueringen);
 			Assert.AreEqual(10, actual.Count);
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 1, 1))); //Neujahr
@@ -747,7 +723,7 @@ namespace ESolutions.Test
 		{
 			try
 			{
-				DateTime actual = new DateTime(2008, 1, 1);
+				var actual = new DateTime(2008, 1, 1);
 				var holidays = actual.GetGermanHolidaysGrouped(GermanFederalStates.Unknown);
 				Assert.IsTrue(holidays.ContainsKey(new DateTime(2008, 5, 1)));
 				var firstOfMay = holidays[new DateTime(2008, 5, 1)];
@@ -769,9 +745,9 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestFirstDayOfMonth()
 		{
-			DateTime testDate = new DateTime(2011, 08, 20);
-			DateTime actual = testDate.GetFirstDayOfMonth();
-			DateTime expected = new DateTime(2011, 08, 1);
+			var testDate = new DateTime(2011, 08, 20);
+			var actual = testDate.GetFirstDayOfMonth();
+			var expected = new DateTime(2011, 08, 1);
 
 			Assert.AreEqual(expected, actual);
 		}
@@ -781,9 +757,9 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestLastDayOfMonth()
 		{
-			DateTime testDate = new DateTime(2011, 08, 20);
-			DateTime actual = testDate.GetLastDayOfMonth();
-			DateTime expected = new DateTime(2011, 08, 31);
+			var testDate = new DateTime(2011, 08, 20);
+			var actual = testDate.GetLastDayOfMonth();
+			var expected = new DateTime(2011, 08, 31);
 
 			Assert.AreEqual(expected, actual);
 		}
@@ -793,9 +769,9 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestFirstDayOfYear()
 		{
-			DateTime testDate = new DateTime(2016, 2, 9);
-			DateTime actual = testDate.GetFirstDayOfYear();
-			DateTime expected = new DateTime(2016, 1, 1);
+			var testDate = new DateTime(2016, 2, 9);
+			var actual = testDate.GetFirstDayOfYear();
+			var expected = new DateTime(2016, 1, 1);
 
 			Assert.AreEqual(expected, actual);
 		}
@@ -805,9 +781,9 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void TestLastDayOfYear()
 		{
-			DateTime testDate = new DateTime(2016, 2, 9);
-			DateTime actual = testDate.GetLastDayOfYear();
-			DateTime expected = new DateTime(2016, 12, 31);
+			var testDate = new DateTime(2016, 2, 9);
+			var actual = testDate.GetLastDayOfYear();
+			var expected = new DateTime(2016, 12, 31);
 
 			Assert.AreEqual(expected, actual);
 		}

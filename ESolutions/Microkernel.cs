@@ -59,73 +59,75 @@ namespace ESolutions
 			try
 			{
 				#region CleanConfiguration
-				Microkernel.assemblyMapping = new SortedList<string, AssemblyMapping>();
-				Microkernel.typeMappings = new SortedList<string, TypeMapping>();
+				Microkernel.assemblyMapping = new SortedList<String, AssemblyMapping>();
+				Microkernel.typeMappings = new SortedList<String, TypeMapping>();
 				#endregion
 
 				#region ReadFileToXmlDocument
-				Byte[] schemaFile = Encoding.UTF8.GetBytes(Properties.Resources.Microkernel_Mappings_Schema);
-				MemoryStream schemaStream = new MemoryStream(schemaFile);
-				XmlSchema schema = XmlSchema.Read(schemaStream, null);
+				var schemaFile = Encoding.UTF8.GetBytes(Properties.Resources.Microkernel_Mappings_Schema);
+				var schemaStream = new MemoryStream(schemaFile);
+				var schema = XmlSchema.Read(schemaStream, null);
 
-				XmlReaderSettings settings = new XmlReaderSettings();
+				var settings = new XmlReaderSettings();
 				settings.Schemas.Add(schema);
 				settings.ValidationType = ValidationType.Schema;
 
-				XmlReader reader = XmlReader.Create(file.FullName, settings);
-				XmlDocument doc = new XmlDocument();
-				doc.Load(reader);
-				#endregion
-
-				#region PrepareParsing
-				XmlNamespaceManager namespaceManager = new XmlNamespaceManager(doc.NameTable);
-				namespaceManager.AddNamespace("es", "http://everydaysolutions.de/schemas/");
-				#endregion
-
-				#region FallbackPath
-				XmlNode assembliesNode = doc.SelectSingleNode("//es:assemblies", namespaceManager);
-				if (assembliesNode != null && assembliesNode.Attributes.Count > 0)
+				using (var reader = XmlReader.Create(file.FullName, settings))
 				{
-					Microkernel.fallbackPath = assembliesNode.Attributes[0].Value;
-				}
+					var doc = new XmlDocument();
+					doc.Load(reader);
+					#endregion
 
-				#endregion
+					#region PrepareParsing
+					var namespaceManager = new XmlNamespaceManager(doc.NameTable);
+					namespaceManager.AddNamespace("es", "http://everydaysolutions.de/schemas/");
+					#endregion
 
-				#region LoadTypeMappings
-				foreach (XmlNode current in doc.SelectNodes("//es:type", namespaceManager))
-				{
-					TypeMapping newMapping = new TypeMapping();
-					newMapping.InterfaceName = current.Attributes[0].Value;
-					newMapping.MultiImplementationKey = current.Attributes.Count > 1 ? current.Attributes[1].Value : String.Empty;
-					newMapping.DeclaringAssembly = current.ChildNodes[0].Attributes[0].Value;
-					newMapping.ImplementingType = current.ChildNodes[1].Attributes[0].Value;
-
-					try
+					#region FallbackPath
+					var assembliesNode = doc.SelectSingleNode("//es:assemblies", namespaceManager);
+					if (assembliesNode != null && assembliesNode.Attributes.Count > 0)
 					{
-						Microkernel.typeMappings.Add(newMapping.InterfaceNameWithMIK, newMapping);
+						Microkernel.fallbackPath = assembliesNode.Attributes[0].Value;
 					}
-					catch (ArgumentException)
-					{
-						throw MicrokernelException.DuplicateTypeMapping(newMapping.InterfaceName, newMapping.MultiImplementationKey);
-					}
-				}
-				#endregion
 
-				#region LoadAssemblyMappings
-				foreach (XmlNode current in doc.SelectNodes("//es:assembly", namespaceManager))
-				{
-					AssemblyMapping newMapping = new AssemblyMapping();
-					newMapping.Fullname = current.Attributes["name"].Value;
-					newMapping.PathToFile = current.Attributes["pathToFile"]?.Value ?? file.Directory.FullName;
-					newMapping.Filename = current.Attributes["fileName"].Value;
+					#endregion
 
-					try
+					#region LoadTypeMappings
+					foreach (XmlNode current in doc.SelectNodes("//es:type", namespaceManager))
 					{
-						Microkernel.assemblyMapping.Add(newMapping.Fullname, newMapping);
+						var newMapping = new TypeMapping();
+						newMapping.InterfaceName = current.Attributes[0].Value;
+						newMapping.MultiImplementationKey = current.Attributes.Count > 1 ? current.Attributes[1].Value : String.Empty;
+						newMapping.DeclaringAssembly = current.ChildNodes[0].Attributes[0].Value;
+						newMapping.ImplementingType = current.ChildNodes[1].Attributes[0].Value;
+
+						try
+						{
+							Microkernel.typeMappings.Add(newMapping.InterfaceNameWithMIK, newMapping);
+						}
+						catch (ArgumentException)
+						{
+							throw MicrokernelException.DuplicateTypeMapping(newMapping.InterfaceName, newMapping.MultiImplementationKey);
+						}
 					}
-					catch (ArgumentException)
+					#endregion
+
+					#region LoadAssemblyMappings
+					foreach (XmlNode current in doc.SelectNodes("//es:assembly", namespaceManager))
 					{
-						throw MicrokernelException.DuplicateAssemblyMapping(newMapping.Fullname);
+						var newMapping = new AssemblyMapping();
+						newMapping.Fullname = current.Attributes["name"].Value;
+						newMapping.PathToFile = current.Attributes["pathToFile"]?.Value ?? file.Directory.FullName;
+						newMapping.Filename = current.Attributes["fileName"].Value;
+
+						try
+						{
+							Microkernel.assemblyMapping.Add(newMapping.Fullname, newMapping);
+						}
+						catch (ArgumentException)
+						{
+							throw MicrokernelException.DuplicateAssemblyMapping(newMapping.Fullname);
+						}
 					}
 				}
 				#endregion
@@ -134,7 +136,7 @@ namespace ESolutions
 
 				if (Microkernel.ConfigurationChanged != null)
 				{
-					Microkernel.ConfigurationChanged(null, new EventArgs());
+					ConfigurationChanged(null, new EventArgs());
 				}
 
 				Microkernel.isInitialized = true;
@@ -152,8 +154,8 @@ namespace ESolutions
 		/// </summary>
 		public static void Reset()
 		{
-			Microkernel.assemblyMapping = new SortedList<string, AssemblyMapping>();
-			Microkernel.typeMappings = new SortedList<string, TypeMapping>();
+			Microkernel.assemblyMapping = new SortedList<String, AssemblyMapping>();
+			Microkernel.typeMappings = new SortedList<String, TypeMapping>();
 			Microkernel.isInitialized = false;
 		}
 		#endregion
@@ -216,11 +218,11 @@ namespace ESolutions
 				throw MicrokernelException.AssemblyNotMapped(typeMapping.DeclaringAssembly);
 			}
 
-			Assembly assembly = Assembly.LoadFile(assemblyMapping.File.FullName);
+			var assembly = Assembly.LoadFile(assemblyMapping.File.FullName);
 			#endregion
 
 			#region GetType
-			Type targetType = assembly.GetType(typeMapping.ImplementingType);
+			var targetType = assembly.GetType(typeMapping.ImplementingType);
 			if (targetType == null)
 			{
 				throw MicrokernelException.TypeNotContained(assembly.FullName, typeMapping.ImplementingType);
@@ -233,13 +235,12 @@ namespace ESolutions
 			{
 				throw MicrokernelException.TypeDoesNotImplementInterface(targetType.FullName, typeof(InterfaceType).FullName);
 			}
-			var result = instance as InterfaceType;
-			if (result == null)
+			if (!(instance is InterfaceType result))
 			{
 				var interfaceAssemblyName = typeof(InterfaceType).Assembly.FullName;
 				var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies()
 					.Where(runner => runner.FullName == interfaceAssemblyName)
-					.Select(runner=>runner.Location)
+					.Select(runner => runner.Location)
 					.ToList();
 				throw MicrokernelException.InterfaceTypeIsLoadedFromDifferentLocations(
 					typeof(InterfaceType).FullName,
@@ -263,24 +264,24 @@ namespace ESolutions
 		/// Initialization is done in a single methods and not in seperate methods to
 		/// remarkebly improve speed.
 		/// </remarks>
-		private static Assembly AssemblyResolve(object sender, ResolveEventArgs args)
+		private static Assembly AssemblyResolve(Object sender, ResolveEventArgs args)
 		{
-			AssemblyMapping mapping = Microkernel.assemblyMapping[args.Name];
-			if (mapping == null)
+			if(!Microkernel.assemblyMapping.ContainsKey(args.Name))
 			{
 				throw MicrokernelException.AssemblyNotMapped(args.Name);
 			}
 
-			FileInfo assemblyFile = mapping.File;
+			var mapping = Microkernel.assemblyMapping[args.Name];
+			var assemblyFile = mapping.File;
 
 			if (assemblyFile.Exists == false)
 			{
-				String fullPath = Path.Combine(Microkernel.fallbackPath, mapping.Filename);
+				var fullPath = Path.Combine(Microkernel.fallbackPath, mapping.Filename);
 				assemblyFile = new FileInfo(fullPath);
 
 				if (assemblyFile.Exists == false)
 				{
-					String message = String.Format(
+					var message = String.Format(
 						"The file {0} you specified in the es:assembly node with the name {1} does not exist.",
 						assemblyFile == null ? String.Empty : assemblyFile.FullName,
 						args.Name);

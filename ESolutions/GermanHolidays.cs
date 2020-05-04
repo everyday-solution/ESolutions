@@ -16,6 +16,7 @@ namespace ESolutions
         Ostersonntag,
         Ostermontag,
         TagDerArbeit,
+        KapitulationDerWehrmacht75Jahre,
         ChristiHimmelfahrt,
         Pfingstsonntag,
         Pfingstmontag,

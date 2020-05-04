@@ -7,7 +7,7 @@ using System.Data;
 using System.IO;
 using ESolutions.Data;
 
-namespace ESolutions.Tests
+namespace ESolutions.Test
 {
 	/// <summary>
 	/// Summary description for UnitTest1

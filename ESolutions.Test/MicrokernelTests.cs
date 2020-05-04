@@ -18,21 +18,11 @@ namespace ESolutions.Test
 	[TestClass]
 	public class MicrokernelTests
 	{
-		#region ClassInitialize
-		[ClassInitialize]
-		public static void ClassInitialize(TestContext context)
+		#region MicrokernelTests
+		public MicrokernelTests()
 		{
 			Microkernel.Initialize(new FileInfo("Microkernel.Mappings.xml"));
 		}
-		#endregion
-
-		//Fields
-		#region testAssemblyFullName
-		private const String testAssemblyFullName = @"ESolutions.Test.dll";
-		#endregion
-
-		#region testType
-		private const String testType = "ESolutions.Test.MyMockerClass";
 		#endregion
 
 		//Methods
@@ -43,7 +33,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void CreateInstanceWithoutDependencies()
 		{
-			ISimpleMapping actual = Microkernel.CreateInstance<ISimpleMapping>();
+			var actual = Microkernel.CreateInstance<ISimpleMapping>();
 
 			Assert.IsNotNull(actual);
 			Assert.IsInstanceOfType(actual, typeof(Mocker.SimpleMapping));
@@ -54,7 +44,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void CreateInstanceWithMappedDependency()
 		{
-			IDependencyMapping01 actual = Microkernel.CreateInstance<IDependencyMapping01>();
+			var actual = Microkernel.CreateInstance<IDependencyMapping01>();
 
 			Assert.IsNotNull(actual);
 			Assert.IsInstanceOfType(actual, typeof(Mocker.DependencyMapping01));
@@ -65,7 +55,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void CreateInstanceWithIndirectDependencyMapped()
 		{
-			IDependencyMapping02 actual = Microkernel.CreateInstance<IDependencyMapping02>();
+			Microkernel.CreateInstance<IDependencyMapping02>();
 		}
 		#endregion
 
@@ -75,12 +65,12 @@ namespace ESolutions.Test
 		{
 			try
 			{
-				IDependencyMapping03 instance = Microkernel.CreateInstance<IDependencyMapping03>();
+				var instance = Microkernel.CreateInstance<IDependencyMapping03>();
 				Assert.Fail("Expected exception was not thrown");
 			}
 			catch (MicrokernelException actual)
 			{
-				MicrokernelException expected = MicrokernelException.TypeOrMikNotMapped("ESolutions.Test.Interfaces.IDependencyMapping03", "");
+				var expected = MicrokernelException.TypeOrMikNotMapped("ESolutions.Test.Interfaces.IDependencyMapping03", "");
 				Assert.AreEqual(expected.Message, actual.Message);
 			}
 			catch (Exception)
@@ -96,12 +86,12 @@ namespace ESolutions.Test
 		{
 			try
 			{
-				IDependencyMapping04 instance = Microkernel.CreateInstance<IDependencyMapping04>();
+				var instance = Microkernel.CreateInstance<IDependencyMapping04>();
 				Assert.Fail("Expected exception was not thrown");
 			}
 			catch (MicrokernelException actual)
 			{
-				MicrokernelException expected = MicrokernelException.AssemblyNotMapped("ESolutions.Test.Unmapped, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+				var expected = MicrokernelException.AssemblyNotMapped("ESolutions.Test.Unmapped, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
 				Assert.AreEqual(expected.Message, actual.Message);
 			}
 			catch (Exception)
@@ -117,12 +107,12 @@ namespace ESolutions.Test
 		{
 			try
 			{
-				IDependencyMapping05 instance = Microkernel.CreateInstance<IDependencyMapping05>();
+				var instance = Microkernel.CreateInstance<IDependencyMapping05>();
 				Assert.Fail("Expected exception was not thrown");
 			}
 			catch (MicrokernelException actual)
 			{
-				MicrokernelException expected = MicrokernelException.TypeNotContained("ESolutions.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "ESolutions.Test.Mocker.DependencyMapping05");
+				var expected = MicrokernelException.TypeNotContained("ESolutions.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "ESolutions.Test.Mocker.DependencyMapping05");
 				Assert.AreEqual(expected.Message, actual.Message);
 			}
 			catch (Exception)
@@ -138,12 +128,12 @@ namespace ESolutions.Test
 		{
 			try
 			{
-				IDependencyMapping06 instance = Microkernel.CreateInstance<IDependencyMapping06>();
+				var instance = Microkernel.CreateInstance<IDependencyMapping06>();
 				Assert.Fail("Expected exception was not thrown");
 			}
 			catch (MicrokernelException actual)
 			{
-				MicrokernelException expected = MicrokernelException.TypeDoesNotImplementInterface("ESolutions.Test.Mocker.DependencyMapping06", "ESolutions.Test.Interfaces.IDependencyMapping06");
+				var expected = MicrokernelException.TypeDoesNotImplementInterface("ESolutions.Test.Mocker.DependencyMapping06", "ESolutions.Test.Interfaces.IDependencyMapping06");
 				Assert.AreEqual(expected.Message, actual.Message);
 			}
 			catch (Exception)
@@ -157,7 +147,7 @@ namespace ESolutions.Test
 		[TestMethod]
 		public void CreateInstanceWithIndirectDependency()
 		{
-			IDependencyMapping07 actual = Microkernel.CreateInstance<IDependencyMapping07>();
+			Microkernel.CreateInstance<IDependencyMapping07>();
 		}
 		#endregion
 	}

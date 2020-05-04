@@ -21,12 +21,12 @@ namespace ESolutions.Core
 		/// </remarks>
 		public static DateTime GetNearestOccurence(this DateTime me, DateTime referenceDate)
 		{
-			Dictionary<DateTime, Int64> pairs = new Dictionary<DateTime, Int64>();
+			var pairs = new Dictionary<DateTime, Int64>();
 
-			for (Int32 year = referenceDate.Year - 1; year <= referenceDate.Year + 1; year++)
+			for (var year = referenceDate.Year - 1; year <= referenceDate.Year + 1; year++)
 			{
-				DateTime date = new DateTime(year, me.Month, me.Day);
-				Int64 distance = Math.Abs(date.Ticks - referenceDate.Ticks);
+				var date = new DateTime(year, me.Month, me.Day);
+				var distance = Math.Abs(date.Ticks - referenceDate.Ticks);
 				pairs.Add(date, distance);
 			}
 
@@ -47,7 +47,7 @@ namespace ESolutions.Core
 		/// </remarks>
 		public static DateTime GetFirstDayOfWeek(this DateTime input)
 		{
-			Int32 daysBetween = 6;
+			var daysBetween = 6;
 			if (input.DayOfWeek != DayOfWeek.Sunday)
 			{
 				daysBetween = input.DayOfWeek - DayOfWeek.Monday;
@@ -70,15 +70,13 @@ namespace ESolutions.Core
 		/// </remarks>
 		public static DateTime GetLastDayOfWeek(this DateTime input)
 		{
-			DateTime result = input.Date;
-
-			Int32 daysBetween = 0;
+			var daysBetween = 0;
 			if (input.DayOfWeek != DayOfWeek.Sunday)
 			{
 				daysBetween = 7 - (Int32)input.DayOfWeek;
 			}
 
-			DateTime sunday = input.AddDays(daysBetween).Date;
+			var sunday = input.AddDays(daysBetween).Date;
 			return new DateTime(sunday.Year, sunday.Month, sunday.Day, 23, 59, 59);
 		}
 		#endregion
@@ -137,7 +135,7 @@ namespace ESolutions.Core
 		#region GetDaysBetween
 		public static IEnumerable<DateTime> GetDaysBetween(this DateTime from, DateTime until)
 		{
-			List<DateTime> result = new List<DateTime>();
+			var result = new List<DateTime>();
 			var runner = from;
 
 			while (runner <= until)
@@ -241,9 +239,9 @@ namespace ESolutions.Core
 		#region GetGermanHolidays
 		public static List<Holiday> GetGermanHolidays(this DateTime value, GermanFederalStates state)
 		{
-			List<Holiday> holidays = new List<Holiday>();
-			Int32 year = value.Year;
-			DateTime osterSonntag = value.GetOsterSonntag();
+			var holidays = new List<Holiday>();
+			var year = value.Year;
+			var osterSonntag = value.GetOsterSonntag();
 
 			//1. Neujahr
 			holidays.Add(new Holiday(new DateTime(year, 1, 1), GermanHolidays.Neujahr, "Neujahr"));
@@ -269,7 +267,7 @@ namespace ESolutions.Core
 			if (state == GermanFederalStates.All ||
 				state == GermanFederalStates.Berlin)
 			{
-				holidays.Add(new Holiday(new DateTime(year, 3,8), GermanHolidays.InternationalerFrauentag, "Internationaler Frauentag"));
+				holidays.Add(new Holiday(new DateTime(year, 3, 8), GermanHolidays.InternationalerFrauentag, "Internationaler Frauentag"));
 			}
 
 			//4. Karfreitag
@@ -287,6 +285,12 @@ namespace ESolutions.Core
 
 			//7. Erster Mai, Tag der Arbeit
 			holidays.Add(new Holiday(new DateTime(year, 5, 1), GermanHolidays.TagDerArbeit, "Tag der Arbeit"));
+
+			//7.1 75 Jahre Kapitulation der deutschen Wehrmacht
+			if (state == GermanFederalStates.Berlin && year == 2020)
+			{
+				holidays.Add(new Holiday(new DateTime(year, 5, 8), GermanHolidays.KapitulationDerWehrmacht75Jahre, "75 Jahre Kapitulation der Wehrmacht"));
+			}
 
 			//8. (Christi-)Himmelfahrt(stag)
 			holidays.Add(new Holiday(osterSonntag.AddDays(39), GermanHolidays.ChristiHimmelfahrt, "Christi Himmelfahrt"));
@@ -368,7 +372,7 @@ namespace ESolutions.Core
 				state == GermanFederalStates.All ||
 				state == GermanFederalStates.Sachsen)
 			{
-				DateTime referenceDay = new DateTime(year, 11, 23);
+				var referenceDay = new DateTime(year, 11, 23);
 				do
 				{
 					referenceDay = referenceDay.AddDays(-1);
@@ -405,8 +409,8 @@ namespace ESolutions.Core
 			j = (value.Year + (value.Year / 4) + i + 2 - c + (c / 4)) % 7;
 
 			l = i - j;
-			Int32 month = (Int32)(3 + ((l + 40) / 44));
-			Int32 day = (Int32)(l + 28 - 31 * (month / 4));
+			var month = (Int32)(3 + ((l + 40) / 44));
+			var day = (Int32)(l + 28 - 31 * (month / 4));
 
 			return new DateTime(value.Year, month, day);
 		}
