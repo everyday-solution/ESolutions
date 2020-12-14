@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>Tobias Mundt - everyday Solutions</Authors>
     <Company>Tobias Mundt - everyday Solutions</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -9,7 +9,7 @@
     <PackageProjectUrl>https://github.com/everyday-solution/ESolutions</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Description>Contains extenders for basic types like String and DateTime as well as a simple Rijndael-Encrypter along with an Google-Authenticator implementation. And some more ;-)</Description>
-    <Version>1.1.8</Version>
+    <Version>1.1.9</Version>
     <AssemblyVersion>1.1.7.0</AssemblyVersion>
     <Copyright>Tobias Mundt - everyday Solutions</Copyright>
     <RepositoryType>Git</RepositoryType>
@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Users\TobiasMundt\OneDrive\BusinessArea\Logo.png">
+    <None Include="..\..\..\Users\TobiasMundt\OneDrive\BusinessArea\eSolutions\Logo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

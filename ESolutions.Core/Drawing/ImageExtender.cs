@@ -40,5 +40,46 @@ namespace ESolutions.Core.Drawing
 			return result;
 		}
 		#endregion
+
+		#region RotateByCameraAngle
+		/// <summary>
+		/// Rotates the image accorings to the camera angle.
+		/// </summary>
+		/// <param name="originalBitmap">The original bitmap.</param>
+		private static void RotateByCameraAngle(this Image originalBitmap)
+		{
+			var propertyId = 0x112;
+
+			if (originalBitmap != null &&
+				originalBitmap.PropertyIdList != null &&
+				originalBitmap.PropertyIdList.Contains(propertyId))
+			{
+				var rotationValue = originalBitmap.GetPropertyItem(propertyId).Value.FirstOrDefault();
+				switch (rotationValue)
+				{
+					case 1: // landscape, do nothing
+					{
+						break;
+					}
+					case 3: // bottoms up
+					{
+						originalBitmap.RotateFlip(rotateFlipType: RotateFlipType.Rotate180FlipNone);
+						break;
+					}
+					case 6: // rotated 90 left
+					{
+						originalBitmap.RotateFlip(rotateFlipType: RotateFlipType.Rotate90FlipNone);
+						break;
+					}
+					case 8: // rotated 90 right
+					{
+						// de-rotate:
+						originalBitmap.RotateFlip(rotateFlipType: RotateFlipType.Rotate270FlipNone);
+						break;
+					}
+				}
+			}
+		}
+		#endregion
 	}
 }
