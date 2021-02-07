@@ -46,7 +46,7 @@ namespace ESolutions.Drawing
 		/// Rotates the image accorings to the camera angle.
 		/// </summary>
 		/// <param name="originalBitmap">The original bitmap.</param>
-		private static void RotateByCameraAngle(this Image originalBitmap)
+		public static void RotateByCameraAngle(this Image originalBitmap)
 		{
 			var propertyId = 0x112;
 
