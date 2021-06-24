@@ -102,7 +102,7 @@ namespace ESolutions.Core.IO
 		#region ApplyAutoFilter
 		private void ApplyAutoFilter()
 		{
-			this.worksheet.Cells[$"A1:{'A' + this.columnCount}"].AutoFilter = true;
+			this.worksheet.Cells[this.worksheet.Dimension.Address].AutoFilter = true;
 		}
 		#endregion
 

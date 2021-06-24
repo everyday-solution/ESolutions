@@ -1,20 +1,23 @@
 <?xml version="1.0"?>
 <package >
 	<metadata>
-		<id>$id$</id>
-		<version>$version$</version>
-		<title>$title$</title>
-		<authors>$author$</authors>
-		<owners>$author$</owners>
+		<id>ESolutions</id>
+		<version>1.9.7.0</version>
+		<title>ESolutions</title>
+		<authors>Tobias Mundt - everyday solutions</authors>
+		<owners>Tobias Mundt - everyday solutions</owners>
 		<license type="expression">MIT</license>
 		<projectUrl>https://github.com/everyday-solution/ESolutions</projectUrl>
 		<icon>images\es_logo_mid.png</icon>
 		<iconUrl>http://www.everyday-solutions.de/images/es_logo_mid.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>$description$</description>
+		<description>Contains basic tools for Rjindael encryption, password hashing and type conversion as well as helpful extensions for basic typs like Images, String and Lists.</description>
 		<releaseNotes></releaseNotes>
-		<copyright>Copyright 2017</copyright>
+		<copyright>Copyright 2021</copyright>
 		<tags>system extender encryption password hashing console</tags>
+		<dependencies>
+			<group targetFramework=".NETFramework4.6.2" />
+		</dependencies>
 	</metadata>
   	<files>
 		<file src="..\es_logo_mid.png" target="images\" />

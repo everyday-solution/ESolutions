@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESolutions.DarkBird.Model.Exports
+namespace ESolutions.IO
 {
 	public class ExcelPackageCreator
 	{
@@ -51,7 +51,7 @@ namespace ESolutions.DarkBird.Model.Exports
 
 		//Methods
 		#region WriteCell
-		public void WriteCell(object value, String format)
+		public void WriteCell(Object value, String format)
 		{
 			this.worksheet.Cells[this.rowIndex, this.columnCount].Style.Numberformat.Format = format;
 			this.WriteCell(value);
@@ -59,7 +59,7 @@ namespace ESolutions.DarkBird.Model.Exports
 		#endregion
 
 		#region WriteCell
-		public void WriteCell(object value)
+		public void WriteCell(Object value)
 		{
 			this.worksheet.Cells[this.rowIndex, this.columnIndex].Value = value;
 
@@ -102,7 +102,7 @@ namespace ESolutions.DarkBird.Model.Exports
 		#region ApplyAutoFilter
 		private void ApplyAutoFilter()
 		{
-			this.worksheet.Cells[$"A1:{'A' + this.columnCount}"].AutoFilter = true;
+			this.worksheet.Cells[this.worksheet.Dimension.Address].AutoFilter = true;
 		}
 		#endregion
 
