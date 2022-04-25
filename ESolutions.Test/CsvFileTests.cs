@@ -269,5 +269,27 @@ namespace ESolutions.Test
 			Assert.AreEqual("cell.1.1;cell.2.1\r\ncell.1.2;cell.2.2\r\ncell.1.3;cell.2.3", streamContent);
 		}
 		#endregion
+
+		#region TestThatCsvFileCanBeSaved
+		[TestMethod]
+		public void TestThatCsvFileCanBeSavedWithoutTrailingNull()
+		{
+			var table = new DataTable();
+			table.Columns.Add("one");
+			table.Columns.Add("two");
+			table.Rows.Add("1", "Zeile 1");
+			table.Rows.Add("2", "Zeile 2");
+
+			var csvFile = new CsvFile(table);
+
+			MemoryStream contentStream = new MemoryStream();
+			csvFile.Save(contentStream, System.Text.Encoding.Unicode, ";");
+			var dataAsArray = contentStream.ToArray();
+
+			Assert.AreEqual(40, dataAsArray.Length);
+			Assert.AreEqual('2', (char)dataAsArray[dataAsArray.Length - 2]);
+			
+		}
+		#endregion
 	}
 }
