@@ -73,7 +73,7 @@ namespace ESolutions.Core.Security.Cryptography
 				saltedPassword.Append(salt[saltIndex % salt.Length]);
 			}
 
-			var hash = SHA512.Create().ComputeHash(Encoding.Unicode.GetBytes(saltedPassword.ToString()));
+			var hash = SHA512.HashData(Encoding.Unicode.GetBytes(saltedPassword.ToString()));
 			return new PasswordHash() { Hash = Encoding.Unicode.GetString(hash), Salt = salt };
 		}
 		#endregion
@@ -101,9 +101,10 @@ namespace ESolutions.Core.Security.Cryptography
 		/// <returns>A class containing the generated hash and salt.</returns>
 		public static PasswordHash GetSecurePasswordHash(String password, String salt, String key)
 		{
+			var passwordBytes = Encoding.UTF8.GetBytes(password);
 			var saltBytes = Encoding.UTF8.GetBytes(salt);
-			var rfcBytes= new Rfc2898DeriveBytes(password, saltBytes, 64000);
-			var hash = Encoding.UTF8.GetString(rfcBytes.GetBytes(100));
+			var rfcBytes = Rfc2898DeriveBytes.Pbkdf2(passwordBytes, saltBytes, 64000, HashAlgorithmName.SHA512, 100);
+			var hash = Encoding.UTF8.GetString(rfcBytes);
 
 			var crypter = new Rijndael
 			{

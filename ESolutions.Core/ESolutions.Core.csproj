@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Authors>Tobias Mundt - everyday Solutions</Authors>
     <Company>Tobias Mundt - everyday Solutions</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -9,20 +9,32 @@
     <PackageProjectUrl>https://github.com/everyday-solution/ESolutions</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Description>Contains extenders for basic types like String and DateTime as well as a simple Rijndael-Encrypter along with an Google-Authenticator implementation. And some more ;-)</Description>
-    <Version>1.1.10</Version>
+    <Version>1.10.1</Version>
     <AssemblyVersion>1.1.10.0</AssemblyVersion>
-    <Copyright>Tobias Mundt - everyday Solutions</Copyright>
+    <Copyright>Tobias Mundt - everyday Solutions - 2024</Copyright>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>c# console dotnet ioc</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/everyday-solution/ESolutions.git</RepositoryUrl>
     <FileVersion>1.1.10.0</FileVersion>
-    <PackageIcon>Logo.png</PackageIcon>
+    <PackageIcon>es_logo_mid.png</PackageIcon>
+    <Title>ESolutions</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CA1416</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CA1416</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="4.5.3.3" />
-    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="EPPlus" Version="7.2.2" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.8" />
+    <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
+    <PackageReference Include="System.Text.Json" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,9 +53,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Users\TobiasMundt\OneDrive\BusinessArea\eSolutions\Logo.png">
+    <None Include="..\es_logo_mid.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

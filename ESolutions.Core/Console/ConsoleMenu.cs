@@ -61,7 +61,7 @@ namespace ESolutions.Core.Console
 
 		#region ShowMenu
 		/// <summary>
-		/// Shows all menu items with the key char and their description. Hitting a associated char key will exceute 
+		/// Shows all menu items with the key char and their description. Hitting a associated char key will exceute
 		/// the menu items operation. The menu items will be called in a loop until the exitChar is hit.
 		/// </summary>
 		/// <param name="args">The arguments.</param>
@@ -149,7 +149,7 @@ namespace ESolutions.Core.Console
 			{
 				System.Console.WriteLine(ex.DeepParse());
 				System.Console.WriteLine(ex.StackTrace);
-				throw ex;
+				throw new Exception($"Argument switch {runner.ArgumentSwitch} failed.", ex);
 			}
 		}
 		#endregion

@@ -51,22 +51,22 @@ namespace ESolutions.Core.Security.Cryptography
 		/// <returns></returns>
 		public String Encrypt(String clearText)
 		{
-			byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(clearText);
+			var clearBytes = System.Text.Encoding.Unicode.GetBytes(clearText);
 
-			PasswordDeriveBytes pdb = new PasswordDeriveBytes(
+			var pdb = new PasswordDeriveBytes(
 				Encoding.Unicode.GetBytes(this.EncryptionSecret),
 				Encoding.Unicode.GetBytes(this.EncryptionIV));
 
-			System.Security.Cryptography.Rijndael alg = System.Security.Cryptography.Rijndael.Create();
+			var alg = Aes.Create();
 			alg.Key = pdb.GetBytes(32);
 			alg.IV = pdb.GetBytes(16);
 
-			MemoryStream ms = new MemoryStream();
-			CryptoStream cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
+			var ms = new MemoryStream();
+			var cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
 			cs.Write(clearBytes, 0, clearBytes.Length);
 			cs.Close();
 
-			byte[] encryptedData = ms.ToArray();
+			var encryptedData = ms.ToArray();
 			return Convert.ToBase64String(encryptedData);
 		}
 		#endregion
@@ -79,17 +79,17 @@ namespace ESolutions.Core.Security.Cryptography
 		/// <returns></returns>
 		public String Decrypt(String cipherText)
 		{
-			PasswordDeriveBytes pdb = new PasswordDeriveBytes(
+			var pdb = new PasswordDeriveBytes(
 				Encoding.Unicode.GetBytes(this.EncryptionSecret),
 				Encoding.Unicode.GetBytes(this.EncryptionIV));
 
-			System.Security.Cryptography.Rijndael alg = System.Security.Cryptography.Rijndael.Create();
+			var alg = Aes.Create();
 			alg.Key = pdb.GetBytes(32);
 			alg.IV = pdb.GetBytes(16);
 
-			MemoryStream ms = new MemoryStream();
-			CryptoStream cs = new CryptoStream(ms, alg.CreateDecryptor(), CryptoStreamMode.Write);
-			Byte[] cypherBytes = Convert.FromBase64String(cipherText);
+			var ms = new MemoryStream();
+			var cs = new CryptoStream(ms, alg.CreateDecryptor(), CryptoStreamMode.Write);
+			var cypherBytes = Convert.FromBase64String(cipherText);
 			cs.Write(cypherBytes, 0, cypherBytes.Length);
 			cs.Close();
 

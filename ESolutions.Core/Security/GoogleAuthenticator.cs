@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace ESolutions.Core.Security
 		const int PinLength = 6;
 		#endregion
 
-		#region PinModuo
+		#region PinModulo
 		/// <summary>
 		/// The pin modulo
 		/// </summary>
@@ -85,16 +86,14 @@ namespace ESolutions.Core.Security
 		/// <summary>
 		/// Generates a QR code bitmap for provisioning.
 		/// </summary>
-		public byte[] GenerateProvisioningImage(string identifier, byte[] key, int width, int height)
+		public static async Task<byte[]> GenerateProvisioningImage(string identifier, byte[] key, int width, int height)
 		{
 			var keyString = Base32Encoder.ToBase32String(key);
 			var provisionUrl = WebUtility.UrlEncode(string.Format("otpauth://totp/{0}?secret={1}", identifier, keyString));
 
 			var chartUrl = string.Format("https://chart.apis.google.com/chart?cht=qr&chs={0}x{1}&chl={2}", width, height, provisionUrl);
-			using (var client = new WebClient())
-			{
-				return client.DownloadData(chartUrl);
-			}
+			using var client = new HttpClient();
+			return await client.GetByteArrayAsync(chartUrl);
 		}
 		#endregion
 

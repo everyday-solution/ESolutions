@@ -15,7 +15,7 @@ namespace ESolutions.Core.Drawing
 	{
 		#region ResizeToWidth
 		/// <summary>
-		/// Resizes the specified bitmap to the specified width and the corresponding 
+		/// Resizes the specified bitmap to the specified width and the corresponding
 		/// the height regarding the image ration.
 		/// </summary>
 		/// <param name="bitmap">The bitmap.</param>
@@ -30,7 +30,7 @@ namespace ESolutions.Core.Drawing
 
 		#region ResizeToHeight
 		/// <summary>
-		/// Resizes the specified bitmap to the specified height and the corresponding 
+		/// Resizes the specified bitmap to the specified height and the corresponding
 		/// the width regarding the image ration.
 		/// </summary>
 		/// <param name="bitmap">The bitmap.</param>
@@ -76,14 +76,14 @@ namespace ESolutions.Core.Drawing
 		public static void DrawWaterMark(this Bitmap originalBitmap, Bitmap watermark)
 		{
 			//Transparent Matrix
-			List<Single[]> pts = new List<Single[]>
-			{
-				new Single[] { 1, 0, 0, 0, 0 },
-				new Single[] { 0, 1, 0, 0, 0 },
-				new Single[] { 0, 0, 1, 0, 0 },
-				new Single[] { 0, 0, 0, 0.5F, 0 },
-				new Single[] { 0, 0, 0, 0, 1 }
-			};
+			List<Single[]> pts =
+			[
+				[1, 0, 0, 0, 0],
+				[0, 1, 0, 0, 0],
+				[0, 0, 1, 0, 0],
+				[0, 0, 0, 0.5F, 0],
+				[0, 0, 0, 0, 1]
+			];
 			ColorMatrix matrix = new ColorMatrix(pts.ToArray());
 			ImageAttributes imageAttributes = new ImageAttributes();
 			imageAttributes.SetColorMatrix(matrix);
