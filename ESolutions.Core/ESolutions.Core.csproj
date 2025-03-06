@@ -9,14 +9,14 @@
     <PackageProjectUrl>https://github.com/everyday-solution/ESolutions</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
     <Description>Contains extenders for basic types like String and DateTime as well as a simple Rijndael-Encrypter along with an Google-Authenticator implementation. And some more ;-)</Description>
-    <Version>1.10.1</Version>
-    <AssemblyVersion>1.1.10.0</AssemblyVersion>
+    <Version>1.10.3</Version>
+    <AssemblyVersion>1.10.3.0</AssemblyVersion>
     <Copyright>Tobias Mundt - everyday Solutions - 2024</Copyright>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>c# console dotnet ioc</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/everyday-solution/ESolutions.git</RepositoryUrl>
-    <FileVersion>1.1.10.0</FileVersion>
+    <FileVersion>1.10.3.0</FileVersion>
     <PackageIcon>es_logo_mid.png</PackageIcon>
     <Title>ESolutions</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -31,10 +31,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="7.2.2" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.8" />
-    <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="EPPlus" Version="7.6.1" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.2" />
+    <PackageReference Include="System.Formats.Asn1" Version="9.0.2" />
+    <PackageReference Include="System.Text.Json" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>

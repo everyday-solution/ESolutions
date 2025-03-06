@@ -275,6 +275,16 @@ namespace ESolutions
 			{
 				holidays.Add(new Holiday(new DateTime(year, 5, 8), GermanHolidays.KapitulationDerWehrmacht75Jahre, "75 Jahre Kapitulation der Wehrmacht"));
 			}
+			//8.1 80 Jahre Kapitulation der deutschen Wehrmacht
+			if (state == GermanFederalStates.Berlin && year == 2025)
+			{
+				holidays.Add(new Holiday(new DateTime(year, 5, 8), GermanHolidays.KapitulationDerWehrmacht75Jahre, "80 Jahre Kapitulation der Wehrmacht"));
+			}
+			//8.3 80 Jahre Volksaufstand in der DDR
+			if (state == GermanFederalStates.Berlin && year == 2028)
+			{
+				holidays.Add(new Holiday(new DateTime(year, 6, 17), GermanHolidays.KapitulationDerWehrmacht75Jahre, "80 Jahre Volksaufstand in der DDR"));
+			}
 
 			//9. (Christi-)Himmelfahrt(stag)
 			holidays.Add(new Holiday(osterSonntag.AddDays(39), GermanHolidays.ChristiHimmelfahrt, "Christi Himmelfahrt"));

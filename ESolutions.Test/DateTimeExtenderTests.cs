@@ -310,9 +310,17 @@ namespace ESolutions.Test
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 25))); //1. Weihnachtsfeiertag
 			Assert.IsTrue(actual.ContainsKey(new DateTime(2011, 12, 26)));  //2. Weihnachtsfeiertag
 
-			var referenceSpecial = new DateTime(2020, 1, 1);
-			var actualSpecial = referenceSpecial.GetGermanHolidaysGrouped(GermanFederalStates.Berlin);
-			Assert.IsTrue(actualSpecial.ContainsKey(new DateTime(2020, 5, 8))); // 75. Jahrestags der Kapitulation der Wehrmacht
+			var referenc2020 = new DateTime(2020, 1, 1);
+			var actual2020Berlin = referenc2020.GetGermanHolidaysGrouped(GermanFederalStates.Berlin);
+			Assert.IsTrue(actual2020Berlin.ContainsKey(new DateTime(2020, 5, 8))); // 75. Jahrestags der Kapitulation der Wehrmacht
+
+			var referenc2025 = new DateTime(2025, 1, 1);
+			var actual2025Berlin = referenc2025.GetGermanHolidaysGrouped(GermanFederalStates.Berlin);
+			Assert.IsTrue(actual2025Berlin.ContainsKey(new DateTime(2025, 5, 8))); // 80. Jahrestags der Kapitulation der Wehrmacht
+
+			var reference2028 = new DateTime(2028, 1, 1);
+			var actual2028Berlin = reference2028.GetGermanHolidaysGrouped(GermanFederalStates.Berlin);
+			Assert.IsTrue(actual2028Berlin.ContainsKey(new DateTime(2028, 6, 17))); // 75. Jahrestag des Volksaufstandes der DDR
 		}
 		#endregion
 
